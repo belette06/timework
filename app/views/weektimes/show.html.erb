@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @weektime %>
+
+<div>
+  <%= link_to "Edit this weektime", edit_weektime_path(@weektime) %> |
+  <%= link_to "Back to weektimes", weektimes_path %>
+
+  <%= button_to "Destroy this weektime", @weektime, method: :delete %>
+</div>

@@ -1,0 +1,31 @@
+<h1>Pages#home</h1>
+  <div class="container ">
+  
+    <% if current_user%>
+    <section class= "container border p-3 mb-4">
+      <div class= "Wrapper text-center" >
+        <p> Hello <%= current_user.email %> ! </p>
+         <p> tu es <%= current_user.role %> ! </p>
+      </div>
+    </section>
+        </hr>
+        </br>
+
+    <section class= "container border p-3 mb-4 " >
+    
+        <h2 class= "text-center font-weight-bold" >Worktimes</h2>
+        </br>
+        <div class= "text-center  " >
+          <%= button_to "feuille d'heures", new_weektime_path, method: :get %>
+          </br>
+          <%= button_to "Toutes mes heures", weektimes_path, method: :get %>
+        </div>
+        </br>
+
+    </section>
+    <% else %>
+    -------
+
+    ----------
+    <%end%>
+  </div>  

@@ -1,0 +1,42 @@
+ <!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div class="navbar-brand">
+     <!-- < %= image_tag ("RD.png"), class: "logo-nav"%> -->
+     <%= link_to "Ticket toon", root_path %>
+    
+    </div>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+     <% unless current_user %>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"> <a href="#About" class="nav-link scroll">About</a> </li>
+        <li class="nav-item"> <a href="#Ticketsection" class="nav-link scroll">Ticket</a> </li>
+        <li class="nav-item"> <a href="#Clientsection" class="nav-link scroll">Clients</a> </li>
+      </ul>
+    <% end %> 
+    </div>
+
+
+
+    <div class=" collapse navbar-collapse" id="navbar-toggler" >
+
+      <% if current_user %>
+        <ul class="navbar-nav ml-auto">  
+          <% if current_user.admin? %>
+            | <li><%#= button_to "Admin", admin_dashboard_path, method: :get  ,class: "color:red"%></li>
+          <%end%>    
+          <li><%= button_to "Edit Account", edit_user_registration_path, method: :get %></li>          
+          <li><%= button_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        </ul>  
+      <% else %> 
+        <ul class="navbar-nav mr-auto">
+          <li><%= button_to "sign in", new_user_session_path, method: :get  %></li> 
+          <li><%#= link_to "sign up", new_user_registration_path %></li> 
+        </ul>  
+      <% end %> 
+    </div>
+</nav>
