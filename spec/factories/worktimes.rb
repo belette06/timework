@@ -6,10 +6,10 @@
 #
 #  id          :bigint           not null, primary key
 #  accord      :boolean
-#  daytime     :time
+#  daytime     :integer
 #  endtime     :time
 #  gotime      :time
-#  workday     :time
+#  workday     :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  weektime_id :bigint           not null

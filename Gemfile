@@ -23,14 +23,14 @@ gem 'activeadmin'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'cancancan', '~> 3.4'
+gem 'cssbundling-rails'
 gem 'devise', '~> 4.8'
 gem 'draper', '~> 4.0', '>= 4.0.2'
 gem 'pundit', '~> 2.2'
+gem 'sassc-rails'
 gem 'simple_form', '~> 5.1'
 gem 'simple_form_datetimepicker', '~> 0.0.9'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem "sassc-rails"
-gem 'cssbundling-rails'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"

@@ -1,9 +1,20 @@
-<h1>New weektime</h1>
+<h1 class="text-center">Nouvelle feuille d'heure</h1>
+</br>
+<%= simple_form_for(@weektime) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= render "form", weektime: @weektime %>
+  <div class="form-inputs text-center">
+  
+    <%= f.input :dateweek, as: :date, html5: true, label: "Select la semaine "  %>
 
-<br>
+  </div>
+</br>
+  <div class="text-center">
+    <%= f.button :submit, class:"btn btn-outline-secondary" %>
+  </div>
+<% end %>
 
 <div>
-  <%= link_to "Back to weektimes", weektimes_path %>
+  <%= button_to "dashbord", root_path, method: :get , class:"btn btn-outline-secondary" %>
 </div>

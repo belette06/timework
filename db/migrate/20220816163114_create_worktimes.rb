@@ -6,8 +6,8 @@ class CreateWorktimes < ActiveRecord::Migration[7.0]
       t.references :weektime, null: false, foreign_key: true
       t.time :gotime
       t.time :endtime
-      t.time :daytime
-      t.time :workday
+      t.integer :daytime
+      t.integer :workday, default: 0
       t.boolean :accord
 
       t.timestamps

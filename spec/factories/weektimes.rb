@@ -5,9 +5,9 @@
 # Table name: weektimes
 #
 #  id          :bigint           not null, primary key
-#  accord      :boolean
+#  accord      :boolean          default(FALSE)
 #  dateweek    :date
-#  workweek    :time
+#  workweek    :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null

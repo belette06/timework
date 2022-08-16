@@ -5,9 +5,9 @@
 # Table name: weektimes
 #
 #  id          :bigint           not null, primary key
-#  accord      :boolean
+#  accord      :boolean          default(FALSE)
 #  dateweek    :date
-#  workweek    :time
+#  workweek    :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
@@ -26,8 +26,12 @@
 class Weektime < ApplicationRecord
   belongs_to :user
 
-  has_many :worktimes
+  has_many :worktimes, dependent: :destroy
   accepts_nested_attributes_for :worktimes
 
   validates_presence_of :dateweek
+
+  def update_weekhour
+    update_columns(weekhour: weekhour)
+  end
 end
