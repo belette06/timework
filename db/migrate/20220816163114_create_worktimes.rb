@@ -8,7 +8,7 @@ class CreateWorktimes < ActiveRecord::Migration[7.0]
       t.time :endtime
       t.integer :daytime
       t.integer :workday, default: 0
-      t.boolean :accord
+      t.boolean :accord, default: false
 
       t.timestamps
     end
