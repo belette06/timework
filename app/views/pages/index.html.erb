@@ -16,8 +16,9 @@
         <h2 class= "text-center font-weight-bold" >Worktimes</h2>
         </br>
         <div class= "text-center  " >
-          <%= button_to "feuille d'heures", new_weektime_path, method: :get , class:"btn btn-outline-secondary" %>
-          </br>
+          <%#= button_to "feuille d'heures", new_weektime_path, method: :get , class:"btn btn-outline-secondary" %>
+           <%= link_to "feuille d'heures", new_weektime_path,"data-controller": "turbo" , class:"btn btn-outline-secondary"  %>
+          </br></br>
           <%= button_to "Toutes mes heures", weektimes_path, method: :get , class:"btn btn-outline-secondary" %>
         </div>
         </br>

@@ -1,10 +1,1 @@
-<h1 class= "text-center">Modifier l'heure</h1>
-
-<%= render "form", worktime: @worktime %>
-
-<br>
-
-<div>
-  <%= link_to "Show this worktime", @worktime %> |
-  <%= link_to "Back to worktimes", worktimes_path %>
-</div>
+<%= render partial: "worktimes/form_modal", locals: { worktime: @worktime } %>

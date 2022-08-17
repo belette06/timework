@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class WeektimesController < InheritedResources::Base
-  # class WeektimesController < ApplicationController
+#class WeektimesController < InheritedResources::Base
+ class WeektimesController < ApplicationController
   before_action :set_weektime, only: %i[show edit update destroy]
 
   before_action only: %i[new edit] do

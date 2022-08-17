@@ -16,17 +16,18 @@
      <%= render partial: "layouts/navbar"%>
 
   <div>
-     <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+    <% flash.each do |type, msg| %>
+        <% if type == 'alert' %>
+          <%= content_tag :div, msg, class: "alert alert-danger", role: :alert %>
+          <% else %>
+          <%= content_tag :div, msg, class: "alert alert-primary", role: :alert %>
+        <% end %>
     <% end %>
   </div>
 
 <div class="border p-3 mb-4 container">
     <%= yield %>
-
+    <%= turbo_frame_tag "remote_modal" %>
 </div>
 
     <%= render partial: "layouts/footer"%>

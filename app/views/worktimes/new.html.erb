@@ -1,9 +1,2 @@
-<h1 class="text-center">Ajouter une heure</h1>
 
-<%= render "form", worktime: @worktime %>
-
-<br>
-
-<div>
-  <%= link_to "Back to worktimes", weektime_path(@weektime) %>
-</div>
+<%= render partial: "worktimes/form_modal", locals: { worktime: @worktime } %>
