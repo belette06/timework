@@ -11,7 +11,7 @@
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  worktime_id :bigint           not null
+#  worktime_id :bigint
 #
 # Indexes
 #
@@ -22,5 +22,7 @@
 #  fk_rails_...  (worktime_id => worktimes.id)
 #
 class Affaire < ApplicationRecord
-  belongs_to :worktime
+  has_many :worktimes, dependent: :destroy
+  accepts_nested_attributes_for :worktimes
+
 end

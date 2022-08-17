@@ -7,7 +7,7 @@
 #  id          :bigint           not null, primary key
 #  accord      :boolean          default(FALSE)
 #  dateweek    :date
-#  workweek    :integer          default(0)
+#  workweek    :float            default(0.0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  user_id     :bigint           not null
@@ -31,7 +31,16 @@ class Weektime < ApplicationRecord
 
   validates_presence_of :dateweek
 
+  before_validation :update_weekhour  
+  before_validation :convert_weekhour
+
   def update_weekhour
-    update_columns(weekhour: weekhour)
+    update_columns(workweek: workweek) unless !!0
   end
+
+  def convert_weekhour
+    self.workweek = self.workweek / 3600
+  end
+
+
 end

@@ -5,7 +5,7 @@
 # Table name: worktimes
 #
 #  id          :bigint           not null, primary key
-#  accord      :boolean
+#  accord      :boolean          default(FALSE)
 #  daytime     :integer
 #  endtime     :time
 #  gotime      :time

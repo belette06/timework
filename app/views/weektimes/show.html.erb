@@ -43,7 +43,7 @@
             <%if @weektime.workweek.nil? %> 
             <th></th>
             <% else %>
-            <th><%= Time.at(@weektime.workweek).utc.strftime("%HH %Mmin") %> </th>
+            <th><%= @weektime.workweek %> H </th>
             <% end %>
             
           </tr>

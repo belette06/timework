@@ -7,7 +7,7 @@ class CreateAffaires < ActiveRecord::Migration[7.0]
       t.string :client
       t.string :address
       t.string :title
-      t.references :worktime, null: false, foreign_key: true
+      t.references :worktime, foreign_key: true
 
       t.timestamps
     end

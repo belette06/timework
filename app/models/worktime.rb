@@ -5,7 +5,7 @@
 # Table name: worktimes
 #
 #  id          :bigint           not null, primary key
-#  accord      :boolean
+#  accord      :boolean          default(FALSE)
 #  daytime     :integer
 #  endtime     :time
 #  gotime      :time
@@ -24,6 +24,7 @@
 #
 class Worktime < ApplicationRecord
   belongs_to :weektime
+  has_one :affaire
 
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
 
