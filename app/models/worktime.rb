@@ -63,6 +63,12 @@ class Worktime < ApplicationRecord
     self.workday = endtime - gotime
   end
 
+ # def push_affaire
+ #   self.affaire = affaire
+ #  @workaffaire = Affaire.find(affaire.id)
+ #  affaire.push(@workaffaire.worktime_ids)
+ # end
+
   def calcul_max_heur
     if workday > 64800 # valeur 18h //3600 sec = 60 minutes
       self.flash_alert_message = "Erreur trop d'heure saisie"

@@ -24,14 +24,9 @@ class WorktimesController < ApplicationController
   # POST /worktimes or /worktimes.json
   def create
     @worktime = @weektime.worktimes.build(worktime_params)
-    @affaire = Affaire.find(@worktime.affaire_id)
-    
-   # biding.pry
     
     respond_to do |format|
       if @worktime.save
-        @affaire.worktime_id << @worktime.id
-        @affaire.save
         format.html { redirect_to weektime_url(@weektime) , notice: 'Worktime was successfully created.' }
         # format.json { render :show, status: :created, location: @weektime }
       else
