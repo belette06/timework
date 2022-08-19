@@ -1,14 +1,59 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="text-center">Affaires</h1>
+<hr>
 
-<h1>Affaires</h1>
 
-<div id="affaires">
-  <% @affaires.each do |affaire| %>
-    <%= render affaire %>
-    <p>
-      <%= link_to "Show this affaire", affaire %>
-    </p>
-  <% end %>
+<div class="container">
+       <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th><strong>Numero</strong></th>
+            <th><strong>client</strong></th>
+            <th><strong>address</strong></th>
+            <th><strong>Title</strong></th>
+            <th></th>
+          
+          </tr>
+        </thead>
+    <%if @affaires.nil? %> 
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+    <% else %>   
+      <tbody>   
+      <% @affaires.each do |affaire| %>
+         
+            <tr>
+            
+              
+                <td> <%= affaire.number %></td>
+                <td> <%= affaire.client %></td>
+                <td> <%= affaire.address %></td>
+                <td> <%= affaire.title %></td>
+                <td> <%= link_to "Show", affaire , class:"btn btn-outline-info btn-sm" %></td>
+              
+            
+              
+            </tr>
+    <% end %>
+      </tbody>
+    <%end%>  
+        <thead class="thead-light">
+          <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+  </div>
+
+<div class="form-actions text-center">
+  <%= link_to "New affaire", new_affaire_path , class:"btn btn-outline-secondary btn-sm"%>
 </div>
-
-<%= link_to "New affaire", new_affaire_path %>

@@ -1,10 +1,67 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @affaire %>
+<hr>
 
+<div class="container">
+       <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th><strong>jour</strong></th>
+            <th><strong>heure Total</strong></th>
+            <th><strong>Accord</strong></th>
+            <th><strong>feuille.id</strong></th>
+            
+            <th></th>
+          
+          </tr>
+        </thead>
+        <tbody>  
+    <%if @affaire.worktime_id.nil? %> 
+            <tr>
+              <td colspan="4", class="text-center"><strong>Aucune Heure ajouté</strong></td>
+            </tr>
+    <% else %>  
+       
+      <% @affaire.worktimes.each do |work| %>
+         
+            <tr>
+            
+                <td><%= work.daytime %> </td>
+                <td> <%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+                <td> <%= work.accord %></td>
+                <td> <%= work.weektime_id %></td>
+               
+                <td> <%= link_to "Show", weektime_path(work.weektime_id) , class:"btn btn-outline-info btn-sm" %></td>
+              
+            
+              
+            </tr>
+    <% end %>
+      </tbody>
+    <%end%>  
+        <thead class="thead-light">
+          <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+  </div>
+
+
+
+
+
+
+
+<hr>
 <div>
-  <%= link_to "Edit this affaire", edit_affaire_path(@affaire) %> |
-  <%= link_to "Back to affaires", affaires_path %>
-
-  <%= button_to "Destroy this affaire", @affaire, method: :delete %>
+  <%= link_to "Edit this affaire", edit_affaire_path(@affaire) , class:"btn btn-outline-info btn-sm"%> 
+  <%= button_to "Destroy this affaire", @affaire, method: :delete , class:"btn btn-outline-danger btn-sm"%>
+  </br>
+  <%= link_to "Back to affaires", affaires_path, class:"btn btn-outline-secondary btn-sm" %>
 </div>
