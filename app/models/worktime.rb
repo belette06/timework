@@ -12,19 +12,22 @@
 #  workday     :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  affaire_id  :bigint
 #  weektime_id :bigint           not null
 #
 # Indexes
 #
+#  index_worktimes_on_affaire_id   (affaire_id)
 #  index_worktimes_on_weektime_id  (weektime_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (affaire_id => affaires.id)
 #  fk_rails_...  (weektime_id => weektimes.id)
 #
 class Worktime < ApplicationRecord
   belongs_to :weektime
-  has_one :affaire
+  belongs_to :affaire
 
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
 
@@ -33,6 +36,7 @@ class Worktime < ApplicationRecord
 
   before_validation :insert_weektime_id, on: %i[create update]
 
+  validates_presence_of :affaire
   validates :daytime, presence: true
   validates :gotime, presence: true
   validates :endtime, presence: true
@@ -60,7 +64,7 @@ class Worktime < ApplicationRecord
   end
 
   def calcul_max_heur
-    if workday > 64_800 # valeur 18h //3600 sec = 60 minutes
+    if workday > 64800 # valeur 18h //3600 sec = 60 minutes
       self.flash_alert_message = "Erreur trop d'heure saisie"
       raise ActiveRecord::Rollback
     end
@@ -76,4 +80,6 @@ class Worktime < ApplicationRecord
       raise ActiveRecord::Rollback
     end
   end
+
+ 
 end

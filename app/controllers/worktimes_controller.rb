@@ -4,7 +4,6 @@ class WorktimesController < ApplicationController
   before_action :set_worktime, only: %i[show edit update destroy]
   before_action :set_weektime, only: %i[show new edit create update destroy]
   after_action :flash_alert_message, except: :index
-
   # GET /worktimes or /worktimes.json
   def index
     @worktimes = Worktime.all
@@ -25,10 +24,13 @@ class WorktimesController < ApplicationController
   # POST /worktimes or /worktimes.json
   def create
     @worktime = @weektime.worktimes.build(worktime_params)
+  #  @affaire = Affaire.all.find_by(@worktime.affaire)
+   # biding.pry
 
     respond_to do |format|
       if @worktime.save
-        format.html { redirect_to weektime_url(@weektime), notice: 'Worktime was successfully created.' }
+       
+        format.html { redirect_to weektime_url(@weektime) , notice: 'Worktime was successfully created.' }
         # format.json { render :show, status: :created, location: @weektime }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,11 +43,12 @@ class WorktimesController < ApplicationController
   def update
     respond_to do |format|
       if @worktime.update(worktime_params)
+
         format.html { redirect_to worktime_url(@worktime), notice: 'Worktime was successfully updated.' }
-        format.json { render :show, status: :ok, location: @worktime }
+
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @worktime.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -79,6 +82,6 @@ class WorktimesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def worktime_params
-    params.require(:worktime).permit(:weektime_id, :gotime, :endtime, :daytime, :workday, :accord)
+    params.require(:worktime).permit(:weektime_id, :gotime, :endtime, :daytime, :workday, :accord, :affaire_id)
   end
 end

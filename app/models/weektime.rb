@@ -26,21 +26,19 @@
 class Weektime < ApplicationRecord
   belongs_to :user
 
-  has_many :worktimes, dependent: :destroy
+  has_many :worktimes, dependent: :delete_all
   accepts_nested_attributes_for :worktimes
 
   validates_presence_of :dateweek
 
-  before_validation :update_weekhour  
+  before_validation :update_weekhour
   before_validation :convert_weekhour
 
   def update_weekhour
-    update_columns(workweek: workweek) unless !!0
+    update_columns(workweek: workweek) unless workweek.zero?
   end
 
   def convert_weekhour
-    self.workweek = self.workweek / 3600
+    self.workweek = workweek / 3600
   end
-
-
 end

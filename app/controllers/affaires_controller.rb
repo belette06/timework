@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class AffairesController < ApplicationController
-
-
   before_action :set_affaire, only: %i[show edit update destroy]
 
   before_action only: %i[new edit] do
@@ -13,10 +11,7 @@ class AffairesController < ApplicationController
     @affaires = Affaire.all
   end
 
-  def show
-    
-  end
-
+  def show; end
 
   def new
     @affaire = Affaire.new
@@ -24,7 +19,6 @@ class AffairesController < ApplicationController
 
   # GET /affaires/1/edit
   def edit; end
-
 
   def create
     @affaire = Affaire.new(affaire_params)
@@ -63,7 +57,6 @@ class AffairesController < ApplicationController
     end
   end
 
-
   private
 
   def set_affaire
@@ -71,6 +64,6 @@ class AffairesController < ApplicationController
   end
 
   def affaire_params
-    params.require(:affaire).permit(:number, :client, :address, :title, :worktime_id)
+    params.require(:affaire).permit(:number, :client, :address, :title, worktime_id: [])
   end
 end

@@ -7,7 +7,7 @@
 #  id          :bigint           not null, primary key
 #  address     :string
 #  client      :string
-#  number      :integer
+#  number      :string
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null

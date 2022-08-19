@@ -1,4 +1,4 @@
-<p style="color: green"><%= notice %></p>
+
 
 <div class="border p-3 mb-0 container">
   <h2 class="text-center" > <strong> Semaine : </strong><%= @weektime.dateweek.cweek %> | <strong> Date : </strong><%= @weektime.dateweek.strftime("%Y-%m")    %></h2>
@@ -8,6 +8,7 @@
         <thead class="thead-light">
           <tr>
             <th><strong>Jour</strong></th>
+            <th><strong>Affaire</strong></th>
             <th><strong>debut</strong></th>
             <th><strong>fin</strong></th>
             <th><strong>H/Total </strong></th>
@@ -20,6 +21,7 @@
               <td> </td>
               <td> </td>
               <td> </td>
+              <td> </td>
             </tr>
     <% else %>   
       <tbody>   
@@ -28,6 +30,7 @@
             <tr>
             
               <td><%= work.daytime %> </td>
+              <td><%= work.affaire.title unless work.affaire.nil? %> </td>
               <td><%= work.gotime.to_fs(:time) %></td>
               <td><%= work.endtime.to_fs(:time) %></td> 
               <td><%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
@@ -38,6 +41,7 @@
         <thead class="thead-light">
           <tr>
             <th>valider: <%= @weektime.accord %></th>
+            <th> </th>
             <th> </th>
             <th> </th>
             <%if @weektime.workweek.nil? %> 
@@ -53,7 +57,7 @@
   <hr>
   <div class="container ">
     <div class="text-center">
-      <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),data: { turbo_frame: "remote_modal" }  %>
+      <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),"data-controller": "turbo" %>
    
     </div>
 

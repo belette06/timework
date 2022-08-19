@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-#class WeektimesController < InheritedResources::Base
- class WeektimesController < ApplicationController
+# class WeektimesController < InheritedResources::Base
+class WeektimesController < ApplicationController
   before_action :set_weektime, only: %i[show edit update destroy]
 
-  before_action only: %i[new edit] do
+  before_action do
     redirect_to new_user_session_path unless current_user
   end
 
@@ -21,10 +21,14 @@
   def show
     @worktimes = @weektime.worktimes
     @weektime.workweek = 0
+
     @worktimes.each do |wo|
       @weektime.workweek = @weektime.workweek + wo.workday
     end
     @weektime.save
+
+
+
   end
 
   # GET /weektimes/new

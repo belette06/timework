@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_16_163559) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_17_113040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "affaires", force: :cascade do |t|
-    t.integer "number"
+    t.string "number"
     t.string "client"
     t.string "address"
     t.string "title"
@@ -59,11 +59,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_163559) do
     t.boolean "accord", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "affaire_id"
+    t.index ["affaire_id"], name: "index_worktimes_on_affaire_id"
     t.index ["weektime_id"], name: "index_worktimes_on_weektime_id"
   end
 
   add_foreign_key "affaires", "worktimes"
   add_foreign_key "weektimes", "users"
   add_foreign_key "weektimes", "worktimes"
+  add_foreign_key "worktimes", "affaires"
   add_foreign_key "worktimes", "weektimes"
 end

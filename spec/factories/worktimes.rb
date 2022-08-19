@@ -12,14 +12,17 @@
 #  workday     :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  affaire_id  :bigint
 #  weektime_id :bigint           not null
 #
 # Indexes
 #
+#  index_worktimes_on_affaire_id   (affaire_id)
 #  index_worktimes_on_weektime_id  (weektime_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (affaire_id => affaires.id)
 #  fk_rails_...  (weektime_id => weektimes.id)
 #
 FactoryBot.define do
