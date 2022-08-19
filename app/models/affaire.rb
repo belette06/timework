@@ -22,7 +22,7 @@
 #  fk_rails_...  (worktime_id => worktimes.id)
 #
 class Affaire < ApplicationRecord
-  has_many :worktimes, dependent: :destroy
+  has_many :worktimes
   accepts_nested_attributes_for :worktimes
 
 end
