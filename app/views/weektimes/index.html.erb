@@ -1,14 +1,52 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Weektimes</h1>
+<h1 class="text-center">Weektimes</h1>
+<hr>
+<div class="container">
+       <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th><strong>Dateweek</strong></th>
+            <th><strong>Workweek</strong></th>
+            <th><strong>Accord</strong></th>
+            <th></th>
+            <th></th>
+          
+          </tr>
+        </thead>
+    <%if @weektimes.nil? %> 
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+    <% else %>   
+      <tbody>   
+      
+            <% @weektimes.each do |weektime| %>
+   
+            <tr>
+             <%= render weektime %>
+              
+            </tr>
+          <% end %>
+      </tbody>
+    <%end%>  
+        <thead class="thead-light">
+          <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+  </div>
 
-<div id="weektimes">
-  <% @weektimes.each do |weektime| %>
-    <%= render weektime %>
-    <p>
-      <%= link_to "Show this weektime", weektime %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New weektime", new_weektime_path %>
+  <div class="form-actions text-center">
+<%= link_to "Nouvelle feuille d'heure", new_weektime_path, class:"btn btn-outline-secondary btn-sm"  %>
+  </div>

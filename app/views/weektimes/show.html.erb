@@ -12,11 +12,12 @@
             <th><strong>debut</strong></th>
             <th><strong>fin</strong></th>
             <th><strong>H/Total </strong></th>
-          
+            <th></th>
           </tr>
         </thead>
     <%if @worktimes.nil? %> 
             <tr>
+              <td> </td>
               <td> </td>
               <td> </td>
               <td> </td>
@@ -34,6 +35,9 @@
               <td><%= work.gotime.to_fs(:time) %></td>
               <td><%= work.endtime.to_fs(:time) %></td> 
               <td><%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+              <td><%= button_to "Supprimer", weektime_worktime_path(work), method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %> </td>
+              <td><%= button_to "modif.", edit_weektime_worktime_path(work), method: :delete ,class:"btn btn-outline-info btn-sm" %>              
+              </td>
             </tr>
           <% end %>
       </tbody>
@@ -49,27 +53,27 @@
             <% else %>
             <th><%= @weektime.workweek %> H </th>
             <% end %>
-            
+            <th> </th>
           </tr>
         </thead>
       </table>
   </div>
   <hr>
-  <div class="container ">
+  <div class="row ">
     <div class="text-center">
-      <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),"data-controller": "turbo" %>
-   
+      <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),"data-controller": "turbo", class:"btn btn-outline-secondary btn-sm" %>
+   </br>
     </div>
 
-    <div class="">
-      <%= button_to "Modifier la date de la semaine", edit_weektime_path(@weektime), method: :get,data: { turbo_frame: "remote_modal" } %> </br>
-      <%= button_to "Supprimer la feuilles d'heure", @weektime, method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } }  %>
+    <div class="row">
+      <%= button_to "Modifier la date de la semaine", edit_weektime_path(@weektime), method: :get,data: { turbo_frame: "remote_modal" } ,class:"btn btn-outline-info btn-sm"%> </br>
+      <%= button_to "Supprimer la feuilles d'heure", @weektime, method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %>
     </div>
   </div>
 </div>
 
 </br>
 <div class="container">
-<%= button_to "Dashbord", root_path, method: :get %>
+<%= button_to "Dashbord", root_path, method: :get, class:"btn btn-outline-secondary btn-sm" %>
 </div>
 
