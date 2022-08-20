@@ -46,8 +46,6 @@ class Worktime < ApplicationRecord
   after_validation :validate_negative_heure, on: %i[create update]
   after_validation :calcul_max_heur, on: %i[create update]
 
-
-
   #  def set_jour
   #    self.worktime.wday
   #  end
@@ -55,7 +53,7 @@ class Worktime < ApplicationRecord
   private
 
   def update_accord_status
-    update_attribute(:accord, true) if self.accord.valid?
+    update_attribute(:accord, true) if accord.valid?
   end
 
   def insert_weektime_id
@@ -86,6 +84,4 @@ class Worktime < ApplicationRecord
       raise ActiveRecord::Rollback
     end
   end
-
- 
 end

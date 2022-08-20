@@ -1,11 +1,11 @@
 
 <%= simple_form_for [@weektime, @worktime] do |f| %>
-<div class= "alert alert-danger text-center" >
+
   <% worktime.errors.full_messages.each do |message| %>
-    <%= message %>
+   <%= content_tag :div, message, class: "alert alert-danger text-center", role: :alert %>
   <% end %>  
-</div>
-  
+
+  <%# end %>  
   <div class="form-inputs text-center" >
       <%#= f.input :daytime,  wrapper: :horizontal_collection_inline, collection: Worktime.daytimes.keys  %>
       <h5> Selection le jour </h5>

@@ -24,15 +24,15 @@ class WorktimesController < ApplicationController
   # POST /worktimes or /worktimes.json
   def create
     @worktime = @weektime.worktimes.build(worktime_params)
-    
+
     respond_to do |format|
       if @worktime.save
-        format.html { redirect_to weektime_url(@weektime) , notice: 'Worktime was successfully created.' }
+        format.html { redirect_to weektime_url(@weektime), notice: 'Worktime was successfully created.' }
         # format.json { render :show, status: :created, location: @weektime }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @worktime.errors, status: :unprocessable_entity }
-        
+
       end
     end
   end
@@ -63,6 +63,7 @@ class WorktimesController < ApplicationController
 
   def flash_alert_message
     return unless @worktime.flash_alert_message.present?
+
     flash[:alert] = @worktime.flash_alert_message
   end
 

@@ -24,11 +24,6 @@
 class Affaire < ApplicationRecord
   has_many :worktimes
   accepts_nested_attributes_for :worktimes
- 
+
   attr_accessor :flash_alert_message
-
-  private
-
-
-
 end

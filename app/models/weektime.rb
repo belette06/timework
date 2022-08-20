@@ -30,25 +30,25 @@ class Weektime < ApplicationRecord
   accepts_nested_attributes_for :worktimes
 
   attr_accessor :flash_alert_message
-  
+
   validates_presence_of :dateweek
-  validates_uniqueness_of :numsemaine, :scope => :user_id,
-                          :message =>"Feuille d'heure exist" 
+  validates_uniqueness_of :numsemaine, scope: :user_id,
+                                       message: "Feuille d'heure exist"
 
   before_validation :update_weekhour
   before_validation :convert_weekhour
 
- 
   before_validation :add_num_date, on: %i[create update]
- 
 
+  private
 
-private 
+  def update_accord_status
+    update_attribute(:accord, true) if accord.valid?
+  end
 
-def add_num_date
-self.numsemaine = self.dateweek.cweek 
-end
-
+  def add_num_date
+    update_attribute(:numsemaine, dateweek.cweek) if dateweek.present?
+  end
 
   def update_weekhour
     update_columns(workweek: workweek) unless workweek.zero?
@@ -57,5 +57,4 @@ end
   def convert_weekhour
     self.workweek = workweek / 3600
   end
-
 end

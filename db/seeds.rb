@@ -28,29 +28,29 @@ p "Created #{User.count} User"
 end
 
 ###################################################
-
-
-3.times do
-  Weektime.create(
-    user_id: 1,
-    dateweek: Faker::Date.between(from: '2022-07-01', to: '2022-08-31')
-  )
-  p "Created #{Weektime.count} Weektime"
-end
-
+#
+#
+# 3.times do
+#  Weektime.create(
+#    user_id: 1,
+#    dateweek: Faker::Date.between(from: '2022-07-01', to: '2022-08-31')
+#  )
+#  p "Created #{Weektime.count} Weektime"
+# end
+#
 ###################################################
 
- # 3.times do
- #   Worktime.create(
- #     weektime_id: 1,
- #     gotime: DateTime.now,
- #     endtime: DateTime.now + 3,
- #     daytime: Faker::Number.within(range: 1...3)
- #   )
- #   p "Created #{Worktime.count} Worktime"
- # end
+# 3.times do
+#   Worktime.create(
+#     weektime_id: 1,
+#     gotime: DateTime.now,
+#     endtime: DateTime.now + 3,
+#     daytime: Faker::Number.within(range: 1...3)
+#   )
+#   p "Created #{Worktime.count} Worktime"
+# end
 
-  ###################################################
+###################################################
 
 3.times do
   Affaire.create(
