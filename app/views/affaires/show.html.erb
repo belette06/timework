@@ -6,19 +6,17 @@
        <table class="table table-sm">
         <thead class="thead-light">
           <tr>
-            <th><strong>jour</strong></th>
-            <th><strong>heure Total</strong></th>
-            <th><strong>Accord</strong></th>
-            <th><strong>feuille.id</strong></th>
-            
-            <th></th>
-          
+            <th class="text-center"><strong>jour</strong></th>
+            <th class="text-center"><strong>heure Total</strong></th>
+            <th class="text-center"><strong>Accord</strong></th>
+            <th class="text-center"><strong>feuille.id</strong></th>
+            <th class="text-center"></th>
           </tr>
         </thead>
         <tbody>  
-    <%if @affaire.worktime_id.nil? %> 
+    <%if @affaire.worktime_ids.empty? %> 
             <tr>
-              <td colspan="4", class="text-center"><strong>Aucune Heure ajouté</strong></td>
+              <td colspan="4", class="text-center "><strong>Aucune Heure ajouté</strong></td>
             </tr>
     <% else %>  
        
@@ -26,14 +24,11 @@
          
             <tr>
             
-                <td><%= work.daytime %> </td>
-                <td> <%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
-                <td> <%= work.accord %></td>
-                <td> <%= work.weektime_id %></td>
-               
-                <td> <%= link_to "Show", weektime_path(work.weektime_id) , class:"btn btn-outline-info btn-sm" %></td>
-              
-            
+                <td class="text-center"><%= work.daytime %> </td>
+                <td class="text-center"> <%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+                <td class="text-center"> <%= work.accord %></td>
+                <td class="text-center"> <%= work.weektime_id %></td>
+                <td class="text-center"> <%= link_to "Show", weektime_path(work.weektime_id) , class:"btn btn-outline-info btn-sm" %></td>
               
             </tr>
     <% end %>

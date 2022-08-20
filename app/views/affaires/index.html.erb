@@ -6,12 +6,12 @@
        <table class="table table-sm">
         <thead class="thead-light">
           <tr>
-            <th><strong>Numero</strong></th>
-            <th><strong>client</strong></th>
-            <th><strong>address</strong></th>
-            <th><strong>Title</strong></th>
-            <th></th>
-          
+            <th class="text-center"><strong>Numero</strong></th>
+            <th class="text-center"><strong>client</strong></th>
+            <th class="text-center"><strong>address</strong></th>
+            <th class="text-center"><strong>Title</strong></th>
+            <th class="text-center"><strong>Saisie/H</strong></th>
+            <th class="text-center"><strong> </strong></th>
           </tr>
         </thead>
     <%if @affaires.nil? %> 
@@ -27,13 +27,12 @@
       <% @affaires.each do |affaire| %>
          
             <tr>
-            
-              
-                <td> <%= affaire.number %></td>
-                <td> <%= affaire.client %></td>
-                <td> <%= affaire.address %></td>
-                <td> <%= affaire.title %></td>
-                <td> <%= link_to "Show", affaire , class:"btn btn-outline-info btn-sm" %></td>
+                <td class="text-center"> <%= affaire.number %></td>
+                <td class="text-center"> <%= affaire.client %></td>
+                <td class="text-center"> <%= affaire.address %></td>
+                <td class="text-center"> <%= affaire.title %></td>
+                <td class="text-center"> <%= !affaire.worktime_ids.empty? %></td>
+                <td class="text-center"> <%= link_to "Show", affaire , class:"btn btn-outline-info btn-sm" %></td>
               
             
               

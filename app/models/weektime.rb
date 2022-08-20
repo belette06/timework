@@ -31,8 +31,21 @@ class Weektime < ApplicationRecord
 
   validates_presence_of :dateweek
 
+  before_validation :unique_date
   before_validation :update_weekhour
   before_validation :convert_weekhour
+
+ 
+
+ 
+
+
+
+private 
+
+def unique_date
+self.dateweek = dateweek.cweek
+end
 
   def update_weekhour
     update_columns(workweek: workweek) unless workweek.zero?
@@ -41,4 +54,5 @@ class Weektime < ApplicationRecord
   def convert_weekhour
     self.workweek = workweek / 3600
   end
+
 end

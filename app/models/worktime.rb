@@ -46,15 +46,23 @@ class Worktime < ApplicationRecord
   after_validation :validate_negative_heure, on: %i[create update]
   after_validation :calcul_max_heur, on: %i[create update]
 
+
+
   #  def set_jour
   #    self.worktime.wday
   #  end
 
   private
 
+  def update_accord_status
+    update_attribute(:accord, true) if self.accord.valid?
+  end
+
   def insert_weektime_id
     if weektime.id.nil?
+
       self.flash_alert_message = 'Erreur weektimes is nil'
+      puts 'Erreur weektimes is nil'
       raise ActiveRecord::Rollback
     end
   end
@@ -63,11 +71,9 @@ class Worktime < ApplicationRecord
     self.workday = endtime - gotime
   end
 
- # def push_affaire
- #   self.affaire = affaire
- #  @workaffaire = Affaire.find(affaire.id)
- #  affaire.push(@workaffaire.worktime_ids)
- # end
+  def add_affaire_in_work
+    self.affaire = affaire
+  end
 
   def calcul_max_heur
     if workday > 64800 # valeur 18h //3600 sec = 60 minutes
@@ -75,10 +81,6 @@ class Worktime < ApplicationRecord
       raise ActiveRecord::Rollback
     end
   end
-
-  #  def empty_day
-  #    self.flash_alert_message = "Sasire jour" if self.daytime.nil?
-  #  end
 
   def validate_negative_heure
     if workday.negative? || workday.zero?

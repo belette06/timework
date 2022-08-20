@@ -26,9 +26,6 @@ class WeektimesController < ApplicationController
       @weektime.workweek = @weektime.workweek + wo.workday
     end
     @weektime.save
-
-
-
   end
 
   # GET /weektimes/new

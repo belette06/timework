@@ -1,7 +1,16 @@
+  <div>
+    <% flash.each do |type, msg| %>
+        <% if type == 'alert' %>
+          <%= content_tag :div, msg, class: "alert alert-danger", role: :alert %>
+          <% else %>
+          <%= content_tag :div, msg, class: "alert alert-primary", role: :alert %>
+        <% end %>
+    <% end %>
+  </div>
 
 <%= simple_form_for [@weektime, @worktime] do |f| %>
   <%= f.error_notification %>
-  <%#= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs text-center" >
       <%#= f.input :daytime,  wrapper: :horizontal_collection_inline, collection: Worktime.daytimes.keys  %>

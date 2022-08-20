@@ -31,7 +31,8 @@ class WorktimesController < ApplicationController
         # format.json { render :show, status: :created, location: @weektime }
       else
         format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @worktime.errors, status: :unprocessable_entity }
+        format.json { render json: @worktime.errors, status: :unprocessable_entity }
+        #format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end
@@ -41,7 +42,7 @@ class WorktimesController < ApplicationController
     respond_to do |format|
       if @worktime.update(worktime_params)
 
-        format.html { redirect_to worktime_url(@worktime), notice: 'Worktime was successfully updated.' }
+        format.html { redirect_to weektime_url(@weektime), notice: 'Worktime was successfully updated.' }
 
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,14 +56,13 @@ class WorktimesController < ApplicationController
     @worktime.destroy
 
     respond_to do |format|
-      format.html { redirect_to worktimes_url, notice: 'Worktime was successfully destroyed.' }
+      format.html { redirect_to weektime_url(@weektime), notice: 'Worktime was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def flash_alert_message
     return unless @worktime.flash_alert_message.present?
-
     flash[:alert] = @worktime.flash_alert_message
   end
 
