@@ -30,7 +30,7 @@ class WeektimesController < ApplicationController
 
   # GET /weektimes/new
   def new
-    @weektime = Weektime.new
+    @weektime =current_user.weektimes.build
   end
 
   # GET /weektimes/1/edit
@@ -38,8 +38,7 @@ class WeektimesController < ApplicationController
 
   # POST /weektimes or /weektimes.json
   def create
-    @weektime = Weektime.new(weektime_params)
-    @weektime.user_id = current_user.id
+    @weektime = current_user.weektimes.build(weektime_params)
     @weektime.workweek = 0
 
     respond_to do |format|
@@ -86,6 +85,6 @@ class WeektimesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def weektime_params
-    params.require(:weektime).permit(:user_id, :dateweek, :workweek, :accord, worktime_id: [])
+    params.require(:weektime).permit(:user_id, :dateweek, :numsemaine, :workweek, :accord, worktime_id: [])
   end
 end
