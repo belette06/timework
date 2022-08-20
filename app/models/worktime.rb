@@ -60,9 +60,7 @@ class Worktime < ApplicationRecord
 
   def insert_weektime_id
     if weektime.id.nil?
-
       self.flash_alert_message = 'Erreur weektimes is nil'
-      puts 'Erreur weektimes is nil'
       raise ActiveRecord::Rollback
     end
   end

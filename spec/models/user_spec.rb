@@ -13,11 +13,17 @@
 #  role                   :integer          default("technicien")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  weektime_id            :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_weektime_id           (weektime_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (weektime_id => weektimes.id)
 #
 require 'rails_helper'
 

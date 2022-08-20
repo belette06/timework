@@ -1,16 +1,18 @@
 
     <%= simple_form_for(@weektime) do |f| %>
-      <%= f.error_notification %>
-      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    
+             
+                 <% @weektime.errors.full_messages.each do |message| %>
+                 <div class= "alert alert-danger text-center" ><%= message %></div>
+                 <% end %>
+         
       <div class="form-inputs text-center">
       
-        <%= f.input :dateweek, as: :date, html5: true, label: "Select la semaine "  %>
+        <%= f.input :dateweek, as: :date, html5: true, label: "Select la semaine"  %>
     
       </div>
     </br>
       <div class="text-center">
-        <%= f.button :submit, class:"btn btn-outline-secondary" %>
+        <%= f.button :submit, 'data-turbo': false, class:"btn btn-outline-secondary"%>
       </div>
     <% end %>
 

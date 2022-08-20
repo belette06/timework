@@ -44,7 +44,7 @@ class WeektimesController < ApplicationController
 
     respond_to do |format|
       if @weektime.save
-        format.html { redirect_to weektime_url(@weektime), notice: 'Weektime was successfully created.' }
+        format.html { redirect_to weektime_url(@weektime), notice: "Ajout de la feuille d'heure" }
         format.json { render :show, status: :created, location: @weektime }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -62,6 +62,7 @@ class WeektimesController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @weektime.errors, status: :unprocessable_entity }
+        format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end
   end

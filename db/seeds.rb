@@ -33,7 +33,7 @@ end
 3.times do
   Weektime.create(
     user_id: 1,
-    dateweek: Date.today 
+    dateweek: Faker::Date.between(from: '2022-07-01', to: '2022-08-31')
   )
   p "Created #{Weektime.count} Weektime"
 end
