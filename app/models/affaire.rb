@@ -9,6 +9,7 @@
 #  client      :string
 #  number      :string
 #  title       :string
+#  workaffaire :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  worktime_id :bigint
@@ -26,4 +27,12 @@ class Affaire < ApplicationRecord
   accepts_nested_attributes_for :worktimes
 
   attr_accessor :flash_alert_message
+
+  before_validation :update_workaffaire
+
+private  
+
+  def update_workaffaire
+    update_columns(workaffaire: workaffaire) unless workweek.zero?
+  end
 end

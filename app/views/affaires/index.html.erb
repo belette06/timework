@@ -11,7 +11,7 @@
             <th class="text-center"><strong>address</strong></th>
             <th class="text-center"><strong>Title</strong></th>
             <th class="text-center"><strong>Saisie/H</strong></th>
-            <th class="text-center"><strong> </strong></th>
+            <th class="text-center"><strong> total/ heure</strong></th>
           </tr>
         </thead>
     <%if @affaires.nil? %> 
@@ -32,6 +32,7 @@
                 <td class="text-center"> <%= affaire.address %></td>
                 <td class="text-center"> <%= affaire.title %></td>
                 <td class="text-center"> <%= !affaire.worktime_ids.empty? %></td>
+                <td class="text-center"> <%= Time.at(affaire.workaffaire).utc.strftime("%HH %Mmin")%></td>
                 <td class="text-center"> <%= link_to "Show", affaire , class:"btn btn-outline-info btn-sm" %></td>
               
             

@@ -10,67 +10,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_820_172_607) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_20_172607) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'affaires', force: :cascade do |t|
-    t.string 'number'
-    t.string 'client'
-    t.string 'address'
-    t.string 'title'
-    t.bigint 'worktime_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['worktime_id'], name: 'index_affaires_on_worktime_id'
+  create_table "affaires", force: :cascade do |t|
+    t.string "number"
+    t.string "client"
+    t.string "address"
+    t.string "title"
+    t.integer "workaffaire", default: 0
+    t.bigint "worktime_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worktime_id"], name: "index_affaires_on_worktime_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.integer 'role', default: 0
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'weektime_id'
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
-    t.index ['weektime_id'], name: 'index_users_on_weektime_id'
+  create_table "users", force: :cascade do |t|
+    t.string "name", default: ""
+    t.string "lastname", default: ""
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "role", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "weektime_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["weektime_id"], name: "index_users_on_weektime_id"
   end
 
-  create_table 'weektimes', force: :cascade do |t|
-    t.bigint 'user_id', null: false
-    t.date 'dateweek'
-    t.integer 'numsemaine'
-    t.float 'workweek', default: 0.0
-    t.boolean 'accord', default: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'worktime_id'
-    t.index ['user_id'], name: 'index_weektimes_on_user_id'
-    t.index ['worktime_id'], name: 'index_weektimes_on_worktime_id'
+  create_table "weektimes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "dateweek"
+    t.integer "numsemaine"
+    t.float "workweek", default: 0.0
+    t.boolean "accord", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "worktime_id"
+    t.index ["user_id"], name: "index_weektimes_on_user_id"
+    t.index ["worktime_id"], name: "index_weektimes_on_worktime_id"
   end
 
-  create_table 'worktimes', force: :cascade do |t|
-    t.bigint 'weektime_id', null: false
-    t.time 'gotime'
-    t.time 'endtime'
-    t.integer 'daytime'
-    t.integer 'workday', default: 0
-    t.boolean 'accord', default: false
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'affaire_id'
-    t.index ['affaire_id'], name: 'index_worktimes_on_affaire_id'
-    t.index ['weektime_id'], name: 'index_worktimes_on_weektime_id'
+  create_table "worktimes", force: :cascade do |t|
+    t.bigint "weektime_id", null: false
+    t.time "gotime"
+    t.time "endtime"
+    t.integer "daytime"
+    t.integer "workday", default: 0
+    t.boolean "accord", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "affaire_id"
+    t.index ["affaire_id"], name: "index_worktimes_on_affaire_id"
+    t.index ["weektime_id"], name: "index_worktimes_on_weektime_id"
   end
 
-  add_foreign_key 'affaires', 'worktimes'
-  add_foreign_key 'users', 'weektimes'
-  add_foreign_key 'weektimes', 'users'
-  add_foreign_key 'weektimes', 'worktimes'
-  add_foreign_key 'worktimes', 'affaires'
-  add_foreign_key 'worktimes', 'weektimes'
+  add_foreign_key "affaires", "worktimes"
+  add_foreign_key "users", "weektimes"
+  add_foreign_key "weektimes", "users"
+  add_foreign_key "weektimes", "worktimes"
+  add_foreign_key "worktimes", "affaires"
+  add_foreign_key "worktimes", "weektimes"
 end

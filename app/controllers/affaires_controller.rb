@@ -11,7 +11,12 @@ class AffairesController < ApplicationController
     @affaires = Affaire.all
   end
 
-  def show; end
+  def show
+    @affaire.worktimes.each do |work| 
+       @affaire.workaffaire = @affaire.workaffaire + work.workday
+    end
+    @affaire.save
+  end
 
   def new
     @affaire = Affaire.new
@@ -64,6 +69,6 @@ class AffairesController < ApplicationController
   end
 
   def affaire_params
-    params.require(:affaire).permit(:number, :client, :address, :title, worktime_id: [])
+    params.require(:affaire).permit(:number, :client, :address, :title, :workaffaire, worktime_id: [])
   end
 end

@@ -13,12 +13,13 @@
     
     <tbody>
         <% @affaires.each do |affaire| %>
-          <tr>  
-            <th scope="row"><%= affaire.number.truncate(8)%></th>
+          <tr scope="row"> 
+            <th ><%= affaire.number.truncate(8)%></th>
             <td><%= affaire.client%></td>
             <td><%= affaire.title%></td>
-            <td><%= link_to affaire.worktimes.present?, admin_affaire_path(affaire)%></td>
-          </tr>
+            <td><%= link_to Time.at(affaire.workaffaire).utc.strftime("%HH"), admin_affaire_path(affaire) %></td>  
+       </tr>
+
         <%end%>  
     </tbody>
     </table>
