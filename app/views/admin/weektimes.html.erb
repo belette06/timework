@@ -1,0 +1,25 @@
+<div class="container ">
+    <h1 class="text-center">Administrator Dashbord</h1>
+    <%= render 'admin/nav_links'%>
+    
+    <table class="table table-dark table-striped mt-3"> 
+        <thead>
+            <th scope="col">User</th>
+            <th scope="col">Weektime</th>
+            <th scope="col">Temps</th>
+            <th scope="col">Accord</th>
+        </thead>
+    
+    <tbody>
+        <% @weektimes.each do |week| %>
+          <tr>  
+            <th scope="row"><%= week.user.email%></th>
+            <td><%= link_to week.numsemaine, admin_weektime_path(week)%></td>
+            <td><%= week.workweek%> Hrs</td>
+            <td><%= week.accord%></td>
+          </tr>
+        <%end%>  
+    </tbody>
+    </table>
+</div>
+

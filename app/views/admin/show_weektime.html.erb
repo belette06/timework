@@ -1,0 +1,39 @@
+<div class="container">
+    <h1 class="text-center">Administrator Dashbord</h1>
+      <%= render 'admin/nav_links'%>
+    <div class="text-center mt-5">    
+        <div class="btn-group">
+            <%= link_to 'Edit', edit_weektime_path(@weektime), class:"btn btn-warning" %>
+            <%= button_to 'Delete', @weektime, method: :delete, data: { confirm: "Are you sur?"}, class:"btn btn-danger" %>
+        </div>
+    </div>
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>Semaine:</strong> <%= @weektime.dateweek.cweek %> | <strong> Date : </strong><%= @weektime.dateweek.strftime("%Y-%m") %>
+  </p>    
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>Utilisateur:</strong> <%= @weektime.user.email %> 
+  </p>    
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>heure sur affaire:</strong> <%= @weektime.workweek %> Hrs 
+  </p>    
+
+         <% @weektime.worktimes.each do |work| %>
+            <tr>
+            
+              <td class="text-center"><%= work.daytime %> </td>
+              <td class="text-center"><%= work.affaire.title unless work.affaire.nil? %> </td>
+              <td class="text-center"><%= work.gotime.to_fs(:time) %></td>
+              <td class="text-center"><%= work.endtime.to_fs(:time) %></td> 
+              <td class="text-center"><%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+              <td class="text-center"><%= button_to "Supprimer", weektime_worktime_path(work), method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %> </td>
+              <td class="text-center"><%= button_to "modif.", edit_weektime_worktime_path(work), method: :delete ,class:"btn btn-outline-info btn-sm" %>              
+              </td>
+            </tr>
+          <% end %>
+</div>
