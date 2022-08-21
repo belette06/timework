@@ -33,6 +33,6 @@ class Affaire < ApplicationRecord
 private  
 
   def update_workaffaire
-    update_columns(workaffaire: workaffaire) unless workweek.zero?
+    update_columns(workaffaire: workaffaire) unless workaffaire.zero?
   end
 end
