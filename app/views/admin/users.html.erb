@@ -1,4 +1,28 @@
 <div class="container">
     <h1 class="text-center">Administrator Dashbord</h1>
     <%= render 'admin/nav_links'%>
+    <div class="text-center mt-5">    
+        <div class="btn-group">
+            <%= link_to 'Incrire un User', new_user_session_path, class:"btn btn-outline-success" %>
+        </div>
+    </div>
+</div>
+
+<table class="table table-dark table-striped mt-3"> 
+        <thead>
+            <th scope="col">email</th>
+            <th scope="col">role</th>
+            <th scope="col">weektimes</th>
+        </thead>
+    
+    <tbody>
+        <% @users.each do |user| %>
+          <tr>  
+            <th scope="row"><%= user.email.truncate(21)%></th>
+            <td><%= user.role%></td>
+            <td><%= link_to user.weektimes.present?, admin_user_path(user)%></td>
+          </tr>
+        <%end%>  
+    </tbody>
+    </table>
 </div>

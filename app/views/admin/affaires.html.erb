@@ -5,19 +5,19 @@
 
 <table class="table table-dark table-striped mt-3"> 
         <thead>
-            <th scope="col">User</th>
-            <th scope="col">Weektime</th>
-            <th scope="col">Temps</th>
-            <th scope="col">Accord</th>
+            <th scope="col">Numéro</th>
+            <th scope="col">Client</th>
+            <th scope="col">title</th>
+            <th scope="col">Heure Saisie</th>
         </thead>
     
     <tbody>
-        <% @weektimes.each do |week| %>
+        <% @affaires.each do |affaire| %>
           <tr>  
-            <th scope="row"><%= week.user.email%></th>
-            <td><%= link_to week.numsemaine, admin_weektime_path(week)%></td>
-            <td><%= week.workweek%> Hrs</td>
-            <td><%= week.accord%></td>
+            <th scope="row"><%= affaire.number.truncate(8)%></th>
+            <td><%= affaire.client%></td>
+            <td><%= affaire.title%></td>
+            <td><%= link_to affaire.worktimes.present?, admin_affaire_path(affaire)%></td>
           </tr>
         <%end%>  
     </tbody>

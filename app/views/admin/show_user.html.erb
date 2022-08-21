@@ -1,0 +1,42 @@
+<div class="container">
+    <h1 class="text-center">Administrator Dashbord</h1>
+      <%= render 'admin/nav_links'%>
+    <div class="text-center mt-5">    
+        <div class="btn-group">
+            <%= link_to 'Edit', edit_user_registration_path(@user), class:"btn btn-warning" %>
+            <%= button_to 'Delete', user_registration_path(@user), method: :delete, data: { confirm: "Are you sur?"}, class:"btn btn-danger" %>
+        </div>
+    </div>
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>Numéro:</strong> <%= @user.email %>%>
+  </p>    
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>client:</strong> <%= @user.role %> 
+  </p>    
+</div>
+
+      <table class="table table-dark table-striped mt-3"> 
+        <thead>
+            <th scope="col">numsemaine</th>
+            <th scope="col">workweek</th>
+            <th scope="col">accord</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </thead>
+
+
+         <% @user.weektimes.each do |week| %>
+            <tr>
+              <th scope="row"><%= week.numsemaine %></th>
+              <td ><%= week.workweek %> </td>
+              <td ><%= week.accord %></td>
+              <td ><%= button_to "Supprimer", weektime_worktime_path(week), method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %> </td>
+              <td ><%= button_to "modif.", edit_weektime_worktime_path(week), method: :delete ,class:"btn btn-outline-info btn-sm" %>              
+              </td>
+            </tr>
+          <% end %>
+</div>

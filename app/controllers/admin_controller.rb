@@ -3,6 +3,11 @@ class AdminController < ApplicationController
   end
 
   def users
+    @users = User.all.includes(:weektimes)
+  end
+
+  def show_user
+    @user = User.all.includes(:weektimes).find(params[:id])
   end
 
   def weektimes
@@ -14,5 +19,11 @@ class AdminController < ApplicationController
   end
 
   def affaires
+    @affaires = Affaire.all
+    @worktimes = Affaire.all.includes(:worktimes)
+  end
+
+  def show_affaire
+    @affaire = Affaire.includes(:worktimes).find(params[:id])
   end
 end
