@@ -3,7 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  before_action :authenticate_user!, :redirect_unless_admin,  only: [:new, :create]
+  skip_before_action :require_no_authentication
+  
   # GET /resource/sign_up
   # def new
   #   super
@@ -38,7 +40,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  private
+
+  def redirect_unless_admin
+    unless current_user.try(:admin?)
+      flash[:error] = "Only admins can do that"
+      redirect_to root_path
+    end
+  end
+
+  def sign_up(resource_name, resource)
+    true
+  end
+
+# protected
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

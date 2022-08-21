@@ -12,13 +12,14 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
+                                    sessions: 'users/sessions',
+                                    registrations:'users/registrations'
+                                  }
 
   resources :weektimes do
     resources :worktimes
   end
-  
+
   resources :affaires
 
 

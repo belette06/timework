@@ -1,25 +1,34 @@
-<h2>Sign up</h2>
+<div class="container">  
+  <h2 class="text-center">Sign up</h2>
+  </br>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+  
+    <div class="form-inputs">
+      <%= f.input :email,
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }%>
+      <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation,
+                  required: true,
+                  input_html: { autocomplete: "new-password" } %>
+</br>
+      <%= f.input :role,
+                  as: :radio_buttons, 
+                  collection:User.roles.keys, 
+                  label: false, 
+                  wrapper: :horizontal_collection_inline %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+    </div>
+  </br>
+    <div class="form-actions text-center">
+      <%= f.button :submit, "Sign up", class:"btn btn-outline-secondary btn-sm" %>
+    </div>
+  <% end %>
+  
+  <%= render "users/shared/links" %>
+<div>  
