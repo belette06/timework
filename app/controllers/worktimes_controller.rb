@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class WorktimesController < ApplicationController
+  
   before_action :set_worktime, only: %i[show edit update destroy]
   before_action :set_weektime, only: %i[show new edit create update destroy]
   after_action :flash_alert_message, except: :index
