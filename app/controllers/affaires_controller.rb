@@ -12,6 +12,7 @@ class AffairesController < ApplicationController
   end
 
   def show
+    @affaire.workaffaire = 0
     @affaire.worktimes.each do |work| 
        @affaire.workaffaire = @affaire.workaffaire + work.workday
     end

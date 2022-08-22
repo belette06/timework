@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class WorktimesController < ApplicationController
+class WorktimesController < WeektimesController
   before_action :authenticate_user! do
     redirect_to new_user_session_path unless current_user
   end
-  
+
   before_action :set_worktime, only: %i[show edit update destroy]
   before_action :set_weektime, only: %i[show new edit create update destroy]
   after_action :flash_alert_message, except: :index
