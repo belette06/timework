@@ -4,7 +4,7 @@
 class WeektimesController < ApplicationController
   before_action :set_weektime, only: %i[show edit update destroy]
 
-  before_action do
+  before_action :authenticate_user! do
     redirect_to new_user_session_path unless current_user
   end
 
