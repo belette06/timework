@@ -32,7 +32,11 @@ class WorktimesController < WeektimesController
    @worktime = @weektime.worktimes.build(worktime_params)
 
     respond_to do |format|
-      unless @worktime.save
+      if @worktime.save
+      format.html { redirect_to weektime_url(@weektime), notice: "Ajout de la feuille d'heure" }
+       format.json { render :show, status: :created, location: @weektime }
+      
+      else
         format.turbo_stream { render :new, status: :unprocessable_entity }
       end
     end
