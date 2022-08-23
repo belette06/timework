@@ -35,9 +35,9 @@ class Worktime < ApplicationRecord
   attr_accessor :flash_alert_message
 
   before_validation :insert_weektime_id, on: %i[create update]
-
+ # before_validation :multi_create, on: %i[create]
   validates_presence_of :affaire
-  validates :daytime, presence: true
+  #validates :daytime, presence: true
   validates :gotime, presence: true
   validates :endtime, presence: true
 
@@ -65,6 +65,7 @@ class Worktime < ApplicationRecord
 
   def calcul_heure
     self.workday = endtime - gotime
+
   end
 
   def add_affaire_in_work

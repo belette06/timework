@@ -43,11 +43,12 @@ class WeektimesController < ApplicationController
 
     respond_to do |format|
       if @weektime.save
-        format.html { redirect_to weektime_url(@weektime), notice: "Ajout de la feuille d'heure" }
-        format.json { render :show, status: :created, location: @weektime }
+       # format.html { redirect_to weektime_url(@weektime), notice: "Ajout de la feuille d'heure" }
+       # format.json { render :show, status: :created, location: @weektime }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @weektime.errors, status: :unprocessable_entity }
+       # format.html { render :new, status: :unprocessable_entity }
+       # format.json { render json: @weektime.errors, status: :unprocessable_entity }
+       format.turbo_stream { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -56,11 +57,11 @@ class WeektimesController < ApplicationController
   def update
     respond_to do |format|
       if @weektime.update(weektime_params)
-        format.html { redirect_to weektime_url(@weektime), notice: 'Weektime was successfully updated.' }
-        format.json { render :show, status: :ok, location: @weektime }
+        #format.html { redirect_to weektime_url(@weektime), notice: 'Weektime was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @weektime }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @weektime.errors, status: :unprocessable_entity }
+        #format.html { render :edit, status: :unprocessable_entity }
+        #format.json { render json: @weektime.errors, status: :unprocessable_entity }
         format.turbo_stream { render :form_update, status: :unprocessable_entity }
       end
     end

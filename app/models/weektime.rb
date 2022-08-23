@@ -47,7 +47,7 @@ class Weektime < ApplicationRecord
   end
 
   def add_num_date
-    update_attribute(:numsemaine, dateweek.cweek) 
+    update_attribute(:numsemaine, dateweek.cweek) if dateweek.present?
   end
 
   def update_weekhour

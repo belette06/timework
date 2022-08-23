@@ -8,54 +8,60 @@ class WorktimesController < WeektimesController
   before_action :set_worktime, only: %i[show edit update destroy]
   before_action :set_weektime, only: %i[show new edit create update destroy]
   after_action :flash_alert_message, except: :index
-  # GET /worktimes or /worktimes.json
+
+  # GET /worktimes 
   def index
     @worktimes = Worktime.all
   end
 
-  ## GET /worktimes/1 or /worktimes/1.json
+  ## GET /worktimes/1 
   # def show
   # end
 
-  # GET /worktimes/new
+  # GET new
   def new
     @worktime = @weektime.worktimes.build
+    
   end
 
-  # GET /worktimes/1/edit
+  # GET edit
   def edit; end
 
-  # POST /worktimes or /worktimes.json
+  # POST /worktimes 
   def create
-    @worktime = @weektime.worktimes.build(worktime_params)
-
+   @worktime = @weektime.worktimes.build(worktime_params)
+   days = params[:worktime][:daytime] 
+   day_create = days.compact_blank.map do |day| 
+                    { 
+                      weektime_id:@worktime.weektime_id,
+                      daytime:day,
+                      gotime: @worktime.gotime,
+                      endtime:@worktime.endtime,
+                      workday: @worktime.workday = @worktime.endtime - @worktime.gotime,
+                      affaire_id:@worktime.affaire_id,
+                      created_at: Time.now, 
+                      updated_at: Time.now 
+                    } 
+                   
+   end
+  
     respond_to do |format|
-      if @worktime.save
-        format.html { redirect_to weektime_url(@weektime), notice: 'Worktime was successfully created.' }
-        # format.json { render :show, status: :created, location: @weektime }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @worktime.errors, status: :unprocessable_entity }
-
+      unless params.permit(Worktime.insert_all(day_create))
+        format.turbo_stream { render :new, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /worktimes/1 or /worktimes/1.json
+  # PATCH/PUT 
   def update
     respond_to do |format|
-      if @worktime.update(worktime_params)
-
-        format.html { redirect_to weektime_url(@weektime), notice: 'Worktime was successfully updated.' }
-
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+      unless @worktime.update(worktime_params)
+        format.turbo_stream { render :edit, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /worktimes/1 or /worktimes/1.json
+  # DELETE /worktimes/1 
   def destroy
     @worktime.destroy
 
@@ -65,13 +71,14 @@ class WorktimesController < WeektimesController
     end
   end
 
+ 
+
+  private
   def flash_alert_message
     return unless @worktime.flash_alert_message.present?
 
     flash[:alert] = @worktime.flash_alert_message
   end
-
-  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_worktime
@@ -84,6 +91,6 @@ class WorktimesController < WeektimesController
 
   # Only allow a list of trusted parameters through.
   def worktime_params
-    params.require(:worktime).permit(:weektime_id, :gotime, :endtime, :daytime, :workday, :accord, :affaire_id)
+    params.require(:worktime).permit(:weektime_id, :gotime, :endtime, :workday, :accord, :affaire_id)
   end
 end

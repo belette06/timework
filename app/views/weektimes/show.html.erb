@@ -12,6 +12,8 @@
             <th class="text-center"><strong>debut</strong></th>
             <th class="text-center"><strong>fin</strong></th>
             <th class="text-center"><strong>H/Total </strong></th>
+            <th class="text-center"><strong>Valider </strong></th>
+            <th class="text-center"></th>
             <th class="text-center"></th>
           </tr>
         </thead>
@@ -30,6 +32,7 @@
               <td class="text-center"><%= work.gotime.to_fs(:time) %></td>
               <td class="text-center"><%= work.endtime.to_fs(:time) %></td> 
               <td class="text-center"><%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+              <td class="text-center"><%= work.accord %></td>
               <td class="text-center"><%= button_to "Supprimer", weektime_worktime_path(work), method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %> </td>
               <td class="text-center"><%= button_to "modif.", edit_weektime_worktime_path(work), method: :delete ,class:"btn btn-outline-info btn-sm" %>              
               </td>
@@ -39,7 +42,7 @@
     <%end%>  
         <thead class="thead-light">
           <tr>
-            <th class="text-center">valider: <%= @weektime.accord %></th>
+            <th> </th>
             <th> </th>
             <th> </th>
             <th> </th>
@@ -48,6 +51,8 @@
             <% else %>
             <th class="text-center"><%= @weektime.workweek %> H </th>
             <% end %>
+            <th class="text-center"><%= @weektime.accord %></th>
+            <th> </th>
             <th> </th>
           </tr>
         </thead>

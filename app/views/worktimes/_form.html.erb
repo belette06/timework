@@ -9,7 +9,7 @@
   <div class="form-inputs text-center" >
       <%#= f.input :daytime,  wrapper: :horizontal_collection_inline, collection: Worktime.daytimes.keys  %>
       <h5> Selection le jour </h5>
-      <%= f.input :daytime, as: :radio_buttons, collection:Worktime.daytimes.keys, label: false, wrapper: :horizontal_collection_inline %>      
+      <%= f.input :daytime, as: :check_boxes, collection:Worktime.daytimes,label: false,wrapper: :horizontal_collection_inline , include_blank: false%>      
     </div>
 </br>
   <div class="form-inputs text-center">
