@@ -57,23 +57,28 @@ class WeektimesController < ApplicationController
   def update
     respond_to do |format|
       if @weektime.update(weektime_params)
-        #format.html { redirect_to weektime_url(@weektime), notice: 'Weektime was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @weektime }
+        format.html { redirect_to weektime_url(@weektime), notice: "mise à jour feuille d'heure." }
+        format.json { render :show, status: :ok, location: @weektime }
       else
         #format.html { render :edit, status: :unprocessable_entity }
         #format.json { render json: @weektime.errors, status: :unprocessable_entity }
-        format.turbo_stream { render :form_update, status: :unprocessable_entity }
+        format.turbo_stream { render :form_edit, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /weektimes/1 or /weektimes/1.json
   def destroy
-    @weektime.destroy
+   
 
     respond_to do |format|
-      format.html { redirect_to weektimes_url, notice: 'Weektime was successfully destroyed.' }
+     if @weektime.destroy
+      format.html { redirect_to root_path, notice: "Le broyeur c'est cool !!" }
       format.json { head :no_content }
+     else
+       format.html { redirect_to weektimes_url, notice: "Heure pas Supprimé" }
+       format.json { render :show, status: :created, location: @weektime }
+     end
     end
   end
 

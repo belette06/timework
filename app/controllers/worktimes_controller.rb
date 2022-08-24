@@ -47,7 +47,7 @@ class WorktimesController < WeektimesController
     respond_to do |format|
       if @worktime.update(worktime_update_params)
         format.html { redirect_to weektime_url(@weektime), notice: "update de l'heure" }
-         format.json { render :show, status: :created, location: @weektime }
+         format.json { render :show, status: :show, location: @weektime }
         
         else
           format.turbo_stream { render :edit, status: :unprocessable_entity }

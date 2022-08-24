@@ -15,11 +15,7 @@
         <td class="text-center"><%= Time.at(worktime.workday).utc.strftime("%HH %Mmin") %></td>
         <td class="text-center"><%= worktime.accord %></td>
         <td class="text-center"><%= link_to "Edit", edit_weektime_worktime_path(@weektime.id,worktime), class: "btn btn-outline-success btn-block", "data-controller": "turbo" %>   
-                                <%= link_to "X", weektime_worktime_path(@weektime.id,worktime), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-block" %> </td>   
-
-
-
-                                                  
-
+                                <%= link_to "X", weektime_worktime_path(@weektime.id,worktime), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-sm" %> </td>   
+                                           
    <% end %>    
  <%end%>  
