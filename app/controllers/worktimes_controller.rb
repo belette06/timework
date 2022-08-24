@@ -5,8 +5,8 @@ class WorktimesController < WeektimesController
     redirect_to new_user_session_path unless current_user
   end
 
-  before_action :set_worktime, only: %i[show edit update destroy]
-  before_action :set_weektime, only: %i[show new edit create update destroy]
+  before_action :set_worktime, only: %i[edit update destroy]
+  before_action :set_weektime, only: %i[new edit create update destroy]
   after_action :flash_alert_message, except: :index
 
   # GET /worktimes 
@@ -33,7 +33,7 @@ class WorktimesController < WeektimesController
 
     respond_to do |format|
       if @worktime.save
-      format.html { redirect_to weektime_url(@weektime), notice: "Ajout de la feuille d'heure" }
+      format.html { redirect_to weektime_url(@weektime), notice: "Ajout de l'heure" }
        format.json { render :show, status: :created, location: @weektime }
       
       else
@@ -45,9 +45,13 @@ class WorktimesController < WeektimesController
   # PATCH/PUT 
   def update
     respond_to do |format|
-      unless @worktime.update(worktime_params)
-        format.turbo_stream { render :edit, status: :unprocessable_entity }
-      end
+      if @worktime.update(worktime_update_params)
+        format.html { redirect_to weektime_url(@weektime), notice: "update de l'heure" }
+         format.json { render :show, status: :created, location: @weektime }
+        
+        else
+          format.turbo_stream { render :edit, status: :unprocessable_entity }
+        end
     end
   end
 
@@ -56,8 +60,8 @@ class WorktimesController < WeektimesController
     @worktime.destroy
 
     respond_to do |format|
-      format.html { redirect_to weektime_url(@weektime), notice: "Heure Supprimé" }
-      format.json { render :show, status: :created, location: @weektime }
+     # format.html { redirect_to weektime_url(@weektime), notice: "Heure Supprimé" }
+     # format.json { render :show, status: :created, location: @weektime }
     end
   end
 
@@ -79,6 +83,9 @@ class WorktimesController < WeektimesController
     @weektime = Weektime.find(params[:weektime_id])
   end
 
+  def worktime_update_params
+    params.require(:worktime).permit(:weektime_id, :gotime, :endtime,:workday, :accord, :affaire_id, :daytime)
+  end
   
 
   # Only allow a list of trusted parameters through.

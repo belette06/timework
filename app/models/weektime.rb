@@ -34,12 +34,12 @@ class Weektime < ApplicationRecord
   validates_presence_of :dateweek
   validates_uniqueness_of :numsemaine, scope: :user_id,
                                        message: "Feuille d'heure exist"
-
+ 
   before_validation :update_weekhour
   before_validation :convert_weekhour
 
   before_validation :add_num_date, on: %i[create update]
-
+  after_validation :calcul_max_heur
   private
 
   def update_accord_status
@@ -57,4 +57,12 @@ class Weektime < ApplicationRecord
   def convert_weekhour
     self.workweek = workweek / 3600
   end
+
+  def calcul_max_heur
+    if workweek > 180000 # valeur 50h //3600 sec = 60 minutes
+      self.flash_alert_message = "Erreur trop d'heure saisie"
+      raise ActiveRecord::Rollback
+    end
+  end
+
 end

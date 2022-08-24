@@ -36,17 +36,18 @@ class Worktime < ApplicationRecord
   # attr_reader :set_jour
   attr_accessor :flash_alert_message
 
-  before_validation :insert_weektime_id, on: %i[create update]
-  before_validation :insert_daytime, on: %i[create]
+  before_validation :insert_weektime_id, on: %i[create update edit]
+  before_validation :insert_daytime, on: %i[create] 
+  before_validation :update_daytime, on: %i[update edit]
   validates_presence_of :affaire
   #validates :daytime, presence: true
   validates :gotime, presence: true
   validates :endtime, presence: true
 
-  after_validation :calcul_heure, on: %i[create update]
+  after_validation :calcul_heure, on: %i[create update edit]
 
-  after_validation :validate_negative_heure, on: %i[create update]
-  after_validation :calcul_max_heur, on: %i[create update]
+  after_validation :validate_negative_heure, on: %i[create update edit]
+  #after_validation :calcul_max_heur
   before_validation :create_bluk_day, on: %i[create ]
 
   private
@@ -55,8 +56,12 @@ class Worktime < ApplicationRecord
     update_attribute(:accord, true) if accord.valid?
   end
 
+  def update_daytime
+    self.daytime = daytime
+  end
+
   def insert_daytime
-    self.daytime = dayrecords.compact_blank.first.to_i
+    self.daytime = dayrecords.compact_blank.first.to_i 
   end
 
   def create_bluk_day
@@ -98,7 +103,7 @@ class Worktime < ApplicationRecord
   end
 
   def calcul_max_heur
-    if workday > 64800 # valeur 18h //3600 sec = 60 minutes
+    if worktday > 64800 # valeur 18h //3600 sec = 60 minutes
       self.flash_alert_message = "Erreur trop d'heure saisie"
       raise ActiveRecord::Rollback
     end

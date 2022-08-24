@@ -1,0 +1,29 @@
+
+<%= simple_form_for [@weektime, @worktime] do |f| %>
+
+  <% worktime.errors.full_messages.each do |message| %>
+   <%= content_tag :div, message, class: "alert alert-danger text-center", role: :alert %>
+  <% end %>  
+
+  <%# end %>  
+  <div class="form-inputs text-center" >
+      <h5> Selection le jour </h5>
+      <%= f.input :daytime, as: :radio_buttons, collection:Worktime.daytimes.keys,label: false,wrapper: :horizontal_collection_inline , include_blank: false%>      
+    </div>
+</br>
+  <div class="form-inputs text-center">
+    <h5> Selection les heures </h5>
+    Debut <%= f.input :gotime, as: :time , label: false %>
+    Fin <%= f.input :endtime, as: :time , label: false  %> 
+  </div>
+
+  <div>
+    <h5> Selection laffaire </h5>
+ <%= f.association :affaire, collection: Affaire.all, :value_method => :id %> 
+  </div>
+
+</br></br>
+  <div class="form-actions text-center">
+    <%= f.button :submit , class:"btn btn-outline-secondary btn-sm"  %>
+  </div>
+<% end %>

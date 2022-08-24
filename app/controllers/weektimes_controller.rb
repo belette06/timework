@@ -17,7 +17,7 @@ class WeektimesController < ApplicationController
                  end
   end
 
-  # GET /weektimes/1 or /weektimes/1.json
+  # GET /weektimes/1
   def show
     @worktimes = @weektime.worktimes
     @weektime.workweek = 0
