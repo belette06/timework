@@ -1,33 +1,36 @@
 
 
-<div class="border p-3 mb-0 container">
+<div class="container text-center">
   <h2 class="text-center" > <strong> Semaine : </strong><%= @weektime.dateweek.cweek %> | <strong> Date : </strong><%= @weektime.dateweek.strftime("%Y-%m")    %></h2>
+<div>  
   <hr>
-  <div class="container">
-       <table class="table table-sm">
-        <thead class="thead-light">
+  
+       <table class="table table-lightdark table-striped mt-3 ">
+        <thead class="thead-dark">
           <tr>
-            <th class="text-center"><strong>Jour</strong></th>
-            <th class="text-center"><strong>Affaire</strong></th>
-            <th class="text-center"><strong>debut</strong></th>
-            <th class="text-center"><strong>fin</strong></th>
-            <th class="text-center"><strong>H/Total </strong></th>
-            <th class="text-center"><strong>Valider </strong></th>
-            <th class="text-center"></th>
+            <th scope="col" class="text-center"><strong>Jour</strong></th>
+            <th scope="col" class="text-center"><strong>Affaire</strong></th>
+            <th scope="col" class="text-center"><strong>debut</strong></th>
+            <th scope="col" class="text-center"><strong>fin</strong></th>
+            <th scope="col" class="text-center"><strong>H/Total </strong></th>
+            <th scope="col" class="text-center"><strong>Valider </strong></th>
+            <th scope="col" class="text-center"></th>
             
           </tr>
         </thead>
+        <tbody>   
     <%if @worktimes.empty? %> 
-            <tr>
-              <td colspan="5", class="text-center"><strong>Aucune Heure ajouté</strong></td>
+            <tr scope="row"> <td colspan="7"></td> </tr>
+            <tr scope="row">
+              <td colspan="7", class="text-center"><strong>Aucune Heure ajouté</strong></td>
             </tr>
+            <tr scope="row"> <td colspan="7"></td> </tr>
     <% else %>   
-      <tbody>   
+      
       
           <% @worktimes.each do |work| %>
-            <tr>
-            
-              <td class="text-center"><%= work.daytime %> </td>
+            <tr scope="row">
+              <th class="text-center"><%= work.daytime %> </td>
               <td class="text-center"><%= work.affaire.title unless work.affaire.nil? %> </td>
               <td class="text-center"><%= work.gotime.to_fs(:time) %></td>
               <td class="text-center"><%= work.endtime.to_fs(:time) %></td> 
@@ -40,9 +43,10 @@
               
             </tr>
           <% end %>
-      </tbody>
+      
     <%end%>  
-        <thead class="thead-light">
+        </tbody>
+        <thead class="thead-dark">
           <tr>
             <th> </th>
             <th> </th>
@@ -59,23 +63,23 @@
           </tr>
         </thead>
       </table>
-  </div>
-  <hr>
-  <div class="row ">
-    <div class="text-center">
-      <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),"data-controller": "turbo", class:"btn btn-outline-secondary btn-sm" %>
-   </br>
-    </div>
 
+
+  <hr>
+
+   <div class="text-center">
+      <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),"data-controller": "turbo", class:"btn btn-outline-secondary btn-sm" %>
+   </div>
+</br>
     <div class="row">
       <%= button_to "Modifier la date de la semaine", edit_weektime_path(@weektime), method: :get,data: { turbo_frame: "remote_modal" } ,class:"btn btn-outline-info btn-sm"%> </br>
       <%= button_to "Supprimer la feuilles d'heure", @weektime, method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %>
     </div>
-  </div>
+  
 </div>
 
 </br>
 <div class="container">
 <%= button_to "Dashbord", root_path, method: :get, class:"btn btn-outline-secondary btn-sm" %>
 </div>
-
+</div>

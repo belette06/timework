@@ -1,48 +1,26 @@
 
 <h1 class="text-center">Weektimes</h1>
 <hr>
-<div class="container">
-       <table class="table table-sm">
+  <div class="container">
+       <table class="table table-lightdark table-striped mt-3">
         <thead class="thead-light">
           <tr>
-            <th  class="text-center"><strong>Dateweek</strong></th>
-            <th  class="text-center"><strong>Workweek</strong></th>
-            <th  class="text-center"><strong>Accord</strong></th>
-            <th  class="text-center"></th>
-            <th  class="text-center"></th>
+            <th scope="col", class="text-center"><strong>Dateweek</strong></th>
+            <th scope="col", class="text-center"><strong>Workweek</strong></th>
+            <th scope="col", class="text-center"><strong>Accord</strong></th>
+            <th scope="col", class="text-center"></th>
+            <th scope="col", class="text-center"></th>
           
           </tr>
         </thead>
-    <%if @weektimes.nil? %> 
-              <tr>
-              <td colspan="4", class="text-center"><strong>Aucune de feuille d'heure ajouté</strong></td>
-            </tr>
-    <% else %>   
-      <tbody>   
-      
-            <% @weektimes.each do |weektime| %>
-   
-            <tr>
-             <%= render weektime %>
-              
-            </tr>
-          <% end %>
-      </tbody>
-    <%end%>  
-        <thead class="thead-light">
-          <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th></th>
-          </tr>
+           <tbody> 
+            <%= render partial: "weektimes/weektime" %>
+          </tbody>
         </thead>
       </table>
   </div>
 
 
   <div class="form-actions text-center">
-<%= link_to "Nouvelle feuille d'heure", new_weektime_path, class:"btn btn-outline-secondary btn-sm",  data: { turbo_frame: "remote_modal" } %>
+    <%= link_to "Nouvelle feuille d'heure", new_weektime_path, class:"btn btn-outline-secondary btn-sm",  data: { turbo_frame: "remote_modal" } %>
   </div>

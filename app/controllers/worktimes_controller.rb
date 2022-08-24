@@ -56,8 +56,8 @@ class WorktimesController < WeektimesController
     @worktime.destroy
 
     respond_to do |format|
-      format.html { redirect_to weektimes_url, notice: 'Worktime was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to weektime_url(@weektime), notice: "Heure Supprimé" }
+      format.json { render :show, status: :created, location: @weektime }
     end
   end
 
