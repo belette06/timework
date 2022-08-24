@@ -43,8 +43,8 @@ class WeektimesController < ApplicationController
 
     respond_to do |format|
       if @weektime.save
-       # format.html { redirect_to weektime_url(@weektime), notice: "Ajout de la feuille d'heure" }
-       # format.json { render :show, status: :created, location: @weektime }
+        format.html { redirect_to weektime_url(@weektime), notice: "Ajout d'une feuille d'heure" }
+        format.json { render :show, status: :created, location: @weektime }
       else
        # format.html { render :new, status: :unprocessable_entity }
        # format.json { render json: @weektime.errors, status: :unprocessable_entity }
