@@ -1,0 +1,24 @@
+ <%if @worktimes.empty? %> 
+    <tr scope="row"> <td colspan="7"></td> </tr>
+    <tr scope="row">
+      <td colspan="7", class="text-center"><strong>Aucune Heure ajouté</strong></td>
+    </tr>
+    <tr scope="row"> <td colspan="7"></td> </tr>
+ <% else %>   
+   <% @worktimes.each do |worktime| %>
+
+     <tr scope="row">
+        <td class="text-center"><%= worktime.daytime %></td>
+        <td class="text-center"><%= worktime.affaire.title unless worktime.affaire.nil? %> </td>
+        <td class="text-center"><%= worktime.gotime.to_fs(:time) %></td>
+        <td class="text-center"><%= worktime.endtime.to_fs(:time) %></td> 
+        <td class="text-center"><%= Time.at(worktime.workday).utc.strftime("%HH %Mmin") %></td>
+        <td class="text-center"><%= worktime.accord %></td>
+        <td ><%= link_to "Supprimer", weektime_worktime_path(worktime), 
+                                                            :method => :delete, 
+                                                            form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,
+                                                            class:"btn btn-outline-danger btn-sm" %> </td>      
+      </tr>
+
+   <% end %>    
+ <%end%>  

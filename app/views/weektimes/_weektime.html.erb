@@ -1,10 +1,10 @@
- <%if @weektimes.nil? %> 
+ <%if @weektimes.empty? %> 
   <tr>
     <td colspan="4", class="text-center"><strong>Aucune de feuille d'heure ajouté</strong></td>
   </tr>
  <% else %>   
    <% @weektimes.each do |weektime| %>
-   <div id="<%= dom_id weektime %>">
+   
      <tr scope="row">
       <td class="text-center"><%= weektime.numsemaine %> | <%= weektime.dateweek.strftime("%Y-%m") %> </td>
       <td class="text-center"><%= weektime.workweek %> Hrs </td>
@@ -12,16 +12,6 @@
       <td class="text-center"> </td> 
       <td class="text-center">  <%= link_to "Voir", weektime, class:"btn btn-outline-info btn-sm"%></td>
      </tr>
-   <div>  
+
    <% end %>    
  <%end%>  
-     <thead class="thead-light">
-      <tr>
-        <th> </th>
-        <th> </th>
-        <th> </th>
-        <th> </th>
-        <th> </th>
-        <th> </th>
-      </tr>
-    
