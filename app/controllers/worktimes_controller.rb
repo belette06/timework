@@ -4,19 +4,11 @@ class WorktimesController < WeektimesController
   before_action :authenticate_user! do
     redirect_to new_user_session_path unless current_user
   end
-
+  before_action :toggle, only: %i[update]
   before_action :set_worktime, only: %i[edit update destroy]
   before_action :set_weektime, only: %i[new edit create update destroy]
   after_action :flash_alert_message, except: :index
 
-  # GET /worktimes 
-  def index
-    @worktimes = Worktime.all
-  end
-
-  ## GET /worktimes/1 
-  # def show
-  # end
 
   # GET new
   def new
@@ -45,7 +37,8 @@ class WorktimesController < WeektimesController
   # PATCH/PUT 
   def update
     respond_to do |format|
-      if @worktime.update(worktime_update_params)
+      
+      if @worktime.update(worktime_params)
         format.html { redirect_to weektime_url(@weektime), notice: "update de l'heure" }
          format.json { render :show, status: :show, location: @weektime }
         
@@ -65,9 +58,19 @@ class WorktimesController < WeektimesController
     end
   end
 
- 
+  def toggle
+    @worktime = Worktime.find(params[:id])
+    @worktime.update(accord: params[:accord])
+  
+    render json: { message: "Success" }
+  end
+
+  
 
   private
+
+
+ 
   def flash_alert_message
     return unless @worktime.flash_alert_message.present?
 

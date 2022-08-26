@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'admin/affaires'
     get 'admin/show_affaire/:id', to: "admin#show_affaire", as: 'admin_affaire'
   end
+  
+
 
   root 'pages#index'
 
@@ -19,6 +21,8 @@ Rails.application.routes.draw do
   resources :weektimes do
     resources :worktimes
   end
+  post "worktimes/:id/toggle", to: "worktimes#toggle" #bouton checkbox worktime
+  post "weektimes/:id/upper", to: "weektimes#upper" #bouton checkbox_all worktime
 
   resources :affaires
 

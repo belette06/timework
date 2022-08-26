@@ -19,13 +19,13 @@ class WeektimesController < ApplicationController
 
   # GET /weektimes/1
   def show
+    
     @worktimes = @weektime.worktimes
     @weektime.workweek = 0
 
-    @worktimes.each do |wo|
-      @weektime.workweek = @weektime.workweek + wo.workday
-    end
-    @weektime.save
+    @worktimes.each { |wo| @weektime.workweek = @weektime.workweek + wo.workday}
+   
+
   end
 
   # GET /weektimes/new
@@ -80,6 +80,15 @@ class WeektimesController < ApplicationController
        format.json { render :show, status: :created, location: @weektime }
      end
     end
+  end
+
+
+  def upper
+    weektimetowork = Weektime.find(params[:id])
+    @worktimes = weektimetowork.worktimes
+    @worktimes.worktimes.update_columns(accord: params[:accord])
+  
+    render json: { message: "Success" }
   end
 
   private

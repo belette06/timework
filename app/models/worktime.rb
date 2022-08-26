@@ -34,8 +34,8 @@ class Worktime < ApplicationRecord
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
 
   # attr_reader :set_jour
-  attr_accessor :flash_alert_message
-
+  attr_accessor :flash_alert_message, :check_accord
+ 
   before_validation :insert_weektime_id, on: %i[create update edit]
   before_validation :insert_daytime, on: %i[create] 
   before_validation :update_daytime, on: %i[update edit]
@@ -52,8 +52,24 @@ class Worktime < ApplicationRecord
 
   private
 
-  def update_accord_status
-    update_attribute(:accord, true) if accord.valid?
+  def check_accord(acc)
+   # if acc == true
+   #   dayrecords.shift
+   #   day_create = dayrecords.map do |day| 
+   #       { 
+   #        daytime:day.to_i,
+   #        weektime_id: weektime.id,
+   #        gotime: gotime,
+   #        endtime: endtime,
+   #        workday: workday = endtime - gotime,
+   #        affaire_id: affaire_id,
+   #        created_at: Time.now, 
+   #        updated_at: Time.now,
+   #       } 
+   #       end
+   #   if day_create.present?
+   #     Worktime.upsert_all(day_create) # unique_by: [:environment_id, :name])
+   #   end  
   end
 
   def update_daytime
@@ -74,7 +90,7 @@ class Worktime < ApplicationRecord
            gotime: gotime,
            endtime: endtime,
            workday: workday = endtime - gotime,
-           affaire_id: affaire_id,
+           affaire_ids: affaire_id,
            created_at: Time.now, 
            updated_at: Time.now,
           } 

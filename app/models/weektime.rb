@@ -34,7 +34,9 @@ class Weektime < ApplicationRecord
   validates_presence_of :dateweek
   validates_uniqueness_of :numsemaine, scope: :user_id,
                                        message: "Feuille d'heure exist"
- 
+  
+  before_validation :update_accord_status 
+
   before_validation :update_weekhour
   before_validation :convert_weekhour
 
@@ -42,9 +44,8 @@ class Weektime < ApplicationRecord
   after_validation :calcul_max_heur
   private
 
-  def update_accord_status
-    update_attribute(:accord, true) if accord.valid?
-  end
+
+ 
 
   def add_num_date
     update_attribute(:numsemaine, dateweek.cweek) if dateweek.present?

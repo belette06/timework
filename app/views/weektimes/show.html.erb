@@ -3,11 +3,12 @@
                         | <strong> Date: </strong><%= @weektime.dateweek.strftime("%Y-%m") %></h2>
 
 <hr>
+
     <div class="d-flex justify-content-end container text-center">
       <%= link_to "+ Ajoute une heure", new_weektime_worktime_url(@weektime),"data-controller": "turbo", class:"btn btn-outline-secondary btn-sm" %>
     </div>
 <hr>
-  <div class="container">
+  <div class="table-responsive" data-controller="checkerbox">
    <table class="table table-lightdark table-striped mt-3">
     <thead class="thead-lightdark">
       <tr>
@@ -16,7 +17,9 @@
         <td scope="col" class="text-center"><strong>debut</strong></th>
         <td scope="col" class="text-center"><strong>fin</strong></th>
         <td scope="col" class="text-center"><strong>H/Total </strong></th>
-        <td scope="col" class="text-center"><strong>Valider </strong></th>
+        <td scope="col" class="text-center"><strong><%= check_box_tag "select all", nil, nil, { data: { checkerbox_target: "parent", 
+                                                                                                        action: "checkerbox#upper change->checkerbox#toggleChildren",
+                                                                                                        id: @weektime.id } } %></th>
         <td scope="col" class="text-center"></th>  
       </tr>
     </thead>
@@ -34,12 +37,13 @@
        <% else %>
         <th class="text-center"><%= @weektime.workweek %> H </th>
        <% end %>
-        <th class="text-center"><%= @weektime.accord %></th>
-        <th> </th>   
+        <th class="text-center">  </th>
+       
       </tr>
     </thead>
    </table>
   </div>
+  
 <hr>
 </br>
   <div class="d-flex justify-content-end container text-center">
@@ -49,3 +53,4 @@
 </br>
   
       <%= link_to "< Back", weektimes_path , class:"btn btn-outline-secondary btn-sm"%>
+

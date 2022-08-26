@@ -3,7 +3,7 @@
     <td colspan="4", class="text-center"><strong>Aucune de feuille d'heure ajouté</strong></td>
   </tr>
  <% else %>   
-   <% @weektimes.each do |weektime| %>
+   <% @weektimes.order(:numsemaine).each do |weektime| %>
    
      <tr scope="row">
       <td class="text-center"><%= weektime.numsemaine %> | <%= weektime.dateweek.strftime("%Y-%m") %> </td>

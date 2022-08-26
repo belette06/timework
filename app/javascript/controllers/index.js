@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CheckerboxController from "./checkerbox_controller"
+application.register("checkerbox", CheckerboxController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
