@@ -29,12 +29,13 @@ class Worktime < ApplicationRecord
   belongs_to :weektime
   belongs_to :affaire
 
-  attribute :dayrecords
+  attribute :dayrecord
+
 
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
 
   # attr_reader :set_jour
-  attr_accessor :flash_alert_message, :set_all_update_accord
+  attr_accessor :flash_alert_message
  
   before_validation :insert_weektime_id, on: %i[create update edit]
   before_validation :insert_daytime, on: %i[create] 
@@ -50,33 +51,17 @@ class Worktime < ApplicationRecord
   #after_validation :calcul_max_heur
   before_validation :create_bluk_day, on: %i[create ]
 
+  def initialize(accorded)
+    @accorded =accorded
+  end
+
   private
 
-  def self.set_all_update_accord 
-  
-  
-  end
- 
 
-  def check_accord(acc)
-   # if acc == true
-   #   dayrecords.shift
-   #   day_create = dayrecords.map do |day| 
-   #       { 
-   #        daytime:day.to_i,
-   #        weektime_id: weektime.id,
-   #        gotime: gotime,
-   #        endtime: endtime,
-   #        workday: workday = endtime - gotime,
-   #        affaire_id: affaire_id,
-   #        created_at: Time.now, 
-   #        updated_at: Time.now,
-   #       } 
-   #       end
-   #   if day_create.present?
-   #     Worktime.upsert_all(day_create) # unique_by: [:environment_id, :name])
-   #   end  
-  end
+
+ # def 
+ #   self.update_column(:accord)
+ #end
 
   def update_daytime
     self.daytime = daytime

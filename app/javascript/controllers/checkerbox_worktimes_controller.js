@@ -14,9 +14,9 @@ export default class extends Controller {
     console.log("children")
     if (this.parentTarget.checked) {   
       this.childTargets.map(x => x.checked = true)
-       //this.childTargets.forEach((child) => {
-      // child.checked = true 
-  //  }) 
+       this.childTargets.forEach((child) => {
+       child.checked = true 
+    }) 
 } else {
       this.childTargets.map(x => x.checked = false)
       console.log("non children")

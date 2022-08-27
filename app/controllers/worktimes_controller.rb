@@ -4,8 +4,7 @@ class WorktimesController < WeektimesController
   before_action :authenticate_user! do
     redirect_to new_user_session_path unless current_user
   end
-  before_action :upper, only: %i[update]
-  before_action :toggle, only: %i[update]
+ 
   before_action :set_worktime, only: %i[edit update destroy]
   before_action :set_weektime, only: %i[new edit create update destroy]
   after_action :flash_alert_message, except: %i[:index toggle upper]
@@ -60,20 +59,25 @@ class WorktimesController < WeektimesController
   end
 
   def toggle
+  
     @worktime = Worktime.find(params[:id])
     @worktime.update(accord: params[:accord])
-  
+
     render json: { message: "Success" }
   end
 
   def upper
     
     weektimetowork = Weektime.find(params[:id])
-    @worktimes = weektimetowork.worktimes
- 
-    @worktimes.set_all_update_accord
-  
+    @worktimes = weektimetowork.worktimes.(:id, :accord)
+    @worktimes = @weektimetowork.worktimes.(:id, :accord).map do |x|  
+                                x.id
+                                x.accord = true
+                                x.update
+                              
+                           end
     
+                          
   end
 
   private

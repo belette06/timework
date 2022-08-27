@@ -85,8 +85,9 @@ class WeektimesController < ApplicationController
 
   def upper
     weektimetowork = Weektime.find(params[:id])
-    @worktimes = weektimetowork.worktimes
-    @worktimes.worktimes.update_columns(accord: params[:accord])
+   
+    @worktimes = weektimetowork.worktimes.check_accord
+   
   
     render json: { message: "Success" }
   end
