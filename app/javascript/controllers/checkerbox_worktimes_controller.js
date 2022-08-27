@@ -10,13 +10,13 @@ export default class extends Controller {
    // this.parentTarget.checked = false
   }
 
-  toggleChildren(e) {
-  
+  toggleChildren() {
+    console.log("children")
     if (this.parentTarget.checked) {   
       this.childTargets.map(x => x.checked = true)
-       this.childTargets.forEach((child) => {
-       child.checked = true 
-    }) 
+       //this.childTargets.forEach((child) => {
+      // child.checked = true 
+  //  }) 
 } else {
       this.childTargets.map(x => x.checked = false)
       console.log("non children")
@@ -24,7 +24,6 @@ export default class extends Controller {
   }
 
   toggleParent() {
-  
     if (this.childTargets.map(x => x.checked).includes(accord)) {
       this.parentTarget.checked = true
       console.log("OUI parent")
@@ -53,15 +52,15 @@ export default class extends Controller {
       .then(response => response.json())
 }
 
-upper(e) {
-  console.log("OUeppp children")
-  console.log(e.target)
-  console.log("OUeppp children")
-  const id = e.target.dataset.id
+upper(k) {
+  console.log("OUeppp upper")
+  console.log(k.target)
+  console.log("OUeppp upper")
+  const id = k.target.dataset.id
   const csrfToken = document.querySelector("[name='csrf-token']").content
   
   console.log(fetch)
-  fetch(`/weektimes/${id}/upper`, {
+  fetch(`/worktimes/${id}/upper`, {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
@@ -69,13 +68,10 @@ upper(e) {
       headers: {
           'Content-Type': 'application/json',
          'X-CSRF-Token': csrfToken
-      },
-      body: JSON.stringify({ accord: e.target.checked }) // body data type must match "Content-Type" header
- })
-    .then(response => response.json())
-    .then(data => {
-       alert(data.message)
+      }
    })
+
+  
 }
 
  

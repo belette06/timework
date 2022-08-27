@@ -4,10 +4,11 @@ class WorktimesController < WeektimesController
   before_action :authenticate_user! do
     redirect_to new_user_session_path unless current_user
   end
+  before_action :upper, only: %i[update]
   before_action :toggle, only: %i[update]
   before_action :set_worktime, only: %i[edit update destroy]
   before_action :set_weektime, only: %i[new edit create update destroy]
-  after_action :flash_alert_message, except: :index
+  after_action :flash_alert_message, except: %i[:index toggle upper]
 
 
   # GET new
@@ -65,12 +66,19 @@ class WorktimesController < WeektimesController
     render json: { message: "Success" }
   end
 
+  def upper
+    
+    weektimetowork = Weektime.find(params[:id])
+    @worktimes = weektimetowork.worktimes
+ 
+    @worktimes.set_all_update_accord
   
+    
+  end
 
   private
 
 
- 
   def flash_alert_message
     return unless @worktime.flash_alert_message.present?
 

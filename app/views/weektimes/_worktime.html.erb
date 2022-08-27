@@ -18,12 +18,12 @@
         
 
 <td class="text-center">
-      <%= check_box_tag "accord", work.accord,work.accord, { data: { 
-                                                  checkerbox_target: "child",
-                                                  id: work.id,                                                  
-                                                  action:   "checkerbox#toggle change->checkerbox#toggleParent" }, 
-                                                  multiple: true         
-                                                  } %>
+      <%= check_box_tag "accord", work.accord,work.accord, { multiple: true, data: { 
+                                                  checkerbox_worktimes_target: "child",
+                                                  id: work.id, 
+                                                  week:@weektime.id,                                                 
+                                                  action: "checkerbox-worktimes#toggle change->checkerbox-worktimes#toggleParent" 
+                                                  }} %>
       </td>
 
         <td class="text-center"><%= link_to "Edit", edit_weektime_worktime_path(@weektime.id,work), class: "btn btn-outline-success btn-sm", "data-controller": "turbo" %>      

@@ -34,7 +34,7 @@ class Worktime < ApplicationRecord
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
 
   # attr_reader :set_jour
-  attr_accessor :flash_alert_message, :check_accord
+  attr_accessor :flash_alert_message, :set_all_update_accord
  
   before_validation :insert_weektime_id, on: %i[create update edit]
   before_validation :insert_daytime, on: %i[create] 
@@ -51,6 +51,12 @@ class Worktime < ApplicationRecord
   before_validation :create_bluk_day, on: %i[create ]
 
   private
+
+  def self.set_all_update_accord 
+  
+  
+  end
+ 
 
   def check_accord(acc)
    # if acc == true
