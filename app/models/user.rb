@@ -39,11 +39,28 @@ class User < ApplicationRecord
   enum role: %i[technicien moderateur admin]
   after_initialize :set_default_role, if: :new_record?
 
+  #has_one_attached :profile_picture, dependent: :destroy
+  #validates :profile_picture, content_type: [:png, :jpg, :jpeg, :gif]
+
+
+  paginates_per 20
+
+
   def set_default_role
     self.role ||= :technicien
   end
 
-  def admin
-    self.role ||= :admin
+  def full_name
+    "#{name} #{lastname}"
   end
+
+
+
+private
+
+def admin
+  self.role ||= :admin
+end
+
+
 end

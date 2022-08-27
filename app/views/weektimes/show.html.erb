@@ -43,7 +43,11 @@
     </thead>
    </table>
   </div>
-  
+  <div class="d-flex justify-content-center container">
+    <%= paginate @worktimes, theme: 'bootstrap-5',
+                              pagination_class: "pagination pagination-sm flex-wrap justify-content-center ",
+                              nav_class: "d-inline-block" %> %>
+  </div>
 <hr>
 </br>
   <div class="d-flex justify-content-end container text-center">

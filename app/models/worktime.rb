@@ -34,6 +34,7 @@ class Worktime < ApplicationRecord
 
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
 
+
   # attr_reader :set_jour
   attr_accessor :flash_alert_message
  
@@ -51,9 +52,9 @@ class Worktime < ApplicationRecord
   #after_validation :calcul_max_heur
   before_validation :create_bluk_day, on: %i[create ]
 
-  def initialize(accorded)
-    @accorded =accorded
-  end
+  paginates_per 15
+
+
 
   private
 

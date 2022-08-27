@@ -30,6 +30,7 @@ class Affaire < ApplicationRecord
 
   before_validation :update_workaffaire
 
+
 private  
 
   def update_workaffaire

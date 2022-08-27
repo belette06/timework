@@ -32,7 +32,14 @@
           </tr>
         </thead>        
        </table>
+  
+
+    <div class="d-flex justify-content-center container">
+    <%= paginate @weektimes , theme: 'bootstrap-5',
+                              pagination_class: "pagination pagination-sm flex-wrap justify-content-center ",
+                              nav_class: "d-inline-block" %>
   </div>
+</div>
   </br>
    <%= link_to "< Back", root_path , class:"btn btn-outline-secondary btn-sm"%>
 

@@ -35,13 +35,18 @@ class Weektime < ApplicationRecord
   validates_uniqueness_of :numsemaine, scope: :user_id,
                                        message: "Feuille d'heure exist"
   
-  before_validation :update_accord_status 
+  #before_validation :update_accord_status 
 
   before_validation :update_weekhour
   before_validation :convert_weekhour
 
   before_validation :add_num_date, on: %i[create update]
   after_validation :calcul_max_heur
+  
+  
+  paginates_per 8
+  
+  
   private
 
 

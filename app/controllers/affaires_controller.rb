@@ -8,10 +8,11 @@ class AffairesController < ApplicationController
   end
 
   def index
-    @affaires = Affaire.all
+    @affaires = Affaire.page params[:page] 
   end
 
   def show
+    @affaire.worktimes.page params[:page]
     @affaire.workaffaire = 0
     @affaire.worktimes.each do |work| 
        @affaire.workaffaire = @affaire.workaffaire + work.workday

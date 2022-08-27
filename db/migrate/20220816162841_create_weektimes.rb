@@ -11,5 +11,6 @@ class CreateWeektimes < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :weektimes, :id,                unique: true
   end
 end

@@ -3,7 +3,7 @@
 class CreateWorktimes < ActiveRecord::Migration[7.0]
   def change
     create_table :worktimes do |t|
-      t.references :weektime, null: false, foreign_key: true
+      t.references :weektime, null: false, foreign_key: true, index: true
       t.time :gotime
       t.time :endtime
       t.integer :daytime
@@ -12,5 +12,6 @@ class CreateWorktimes < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :worktimes, :id,                unique: true
   end
 end

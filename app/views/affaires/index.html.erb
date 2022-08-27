@@ -52,7 +52,13 @@
           </tr>
         </thead>
       </table>
+
+    <div class="container text-center">
+    <%= paginate @affaires %>
   </div>
+
+  </div>
+
 
 <div class="form-actions text-center">
   <%= link_to "New affaire", new_affaire_path , class:"btn btn-outline-secondary btn-sm"%>

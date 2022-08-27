@@ -93,6 +93,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.13.0)
       msgpack (~> 1.2)
+    bootstrap5-kaminari-views (0.0.1)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.4)
     cancancan (3.4.0)
     capybara (3.37.1)
@@ -372,6 +375,7 @@ DEPENDENCIES
   annotate (~> 3.2)
   bcrypt (~> 3.1.7)
   bootsnap
+  bootstrap5-kaminari-views
   cancancan (~> 3.4)
   capybara
   cssbundling-rails
@@ -382,11 +386,13 @@ DEPENDENCIES
   faker (~> 2.22)
   jbuilder
   jsbundling-rails
+  kaminari (~> 1.2, >= 1.2.2)
   pg (~> 1.1)
   pry (~> 0.13.1)
   puma (~> 5.0)
   pundit (~> 2.2)
   rails (~> 7.0.3, >= 7.0.3.1)
+  ransack (~> 3.2, >= 3.2.1)
   redis (~> 4.0)
   rspec-rails (~> 5.1, >= 5.1.2)
   rubocop (~> 1.35)

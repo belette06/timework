@@ -8,7 +8,7 @@ class CreateAffaires < ActiveRecord::Migration[7.0]
       t.string :address
       t.string :title
       t.integer :workaffaire, default: 0
-      t.references :worktime, foreign_key: true
+      t.references :worktime, foreign_key: true, index: true
 
       t.timestamps
     end

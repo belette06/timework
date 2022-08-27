@@ -10,20 +10,21 @@ class WeektimesController < ApplicationController
 
   # GET /weektimes or /weektimes.json
   def index
-    @weektimes = if current_user.admin
-                   Weektime.all
-                 else
-                   current_user.weektimes
-                 end
+    @weektimes = Weektime.page params[:page] if current_user.admin? 
+    @weektimes = current_user.weektimes.page params[:page] if current_user             
+                 
+                   
+                 
   end
 
   # GET /weektimes/1
   def show
     
-    @worktimes = @weektime.worktimes
+    @worktimes = @weektime.worktimes.page params[:page]
     @weektime.workweek = 0
 
     @worktimes.each { |wo| @weektime.workweek = @weektime.workweek + wo.workday}
+
    
 
   end
@@ -101,6 +102,6 @@ class WeektimesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def weektime_params
-    params.require(:weektime).permit(:user_id, :dateweek, :numsemaine, :workweek, :accord, worktime_id: [])
+    params.require(:weektime).permit(:user_id, :dateweek, :numsemaine, :workweek, :accord, worktime_ids: [])
   end
 end

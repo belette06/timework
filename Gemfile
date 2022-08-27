@@ -18,7 +18,9 @@ gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
-
+gem 'ransack', '~> 3.2', '>= 3.2.1'
+gem 'bootstrap5-kaminari-views'
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'activeadmin'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
