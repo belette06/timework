@@ -6,10 +6,7 @@
     <tr scope="row"> <td colspan="7"></td> </tr>
  <% else %>   
    <% @worktimes.order(:daytime).each do |work| %>
-   <%= content_tag :tr, id: dom_id(work), class: "dom_class(work)" do %>
-
-     
-      
+   <%= content_tag :tr, id: dom_id(work), class: "dom_class(work)", scope: "row" do %>     
         <td class="text-center"><%= work.daytime %></td>
         <td class="text-center"><%= work.affaire.title unless work.affaire.nil? %> </td>
         <td class="text-center"><%= work.gotime.to_fs(:time) %></td>
@@ -29,7 +26,6 @@
         <td class="text-center"><%= link_to "Edit", edit_weektime_worktime_path(@weektime.id,work), class: "btn btn-outline-success btn-sm", "data-controller": "turbo" %>      
                                 <%= link_to "X", weektime_worktime_path(@weektime.id,work), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-sm" %>   </td>   
      
-     <% end %>                                  
-   <%#end %>    
+     <% end %>                                    
  <%end%>  
 <%end%>  

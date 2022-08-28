@@ -4,12 +4,11 @@
   <% worktime.errors.full_messages.each do |message| %>
    <%= content_tag :div, message, class: "alert alert-danger text-center", role: :alert %>
   <% end %>  
-
-  <%# end %>  
-  <div class="form-inputs text-center" >
-      <%#= f.input :daytime,  wrapper: :horizontal_collection_inline, collection: Worktime.daytimes.keys  %>
-      <h5> Selection le jour </h5>
-      <%= f.input :dayrecords, as: :check_boxes, collection:Worktime.daytimes,label: false,wrapper: :horizontal_collection_inline , include_blank: false%>      
+ 
+  
+     
+    <div class="text-center" >
+      <%= f.input :dayrecords, as: :check_boxes, collection:Worktime.daytimes,label: false,wrapper: :horizontal_collection_inline , include_blank: false, class: ""%>      
     </div>
 </br>
   <div class="form-inputs text-center">
@@ -17,9 +16,9 @@
     Debut <%= f.input :gotime, as: :time , label: false %>
     Fin <%= f.input :endtime, as: :time , label: false  %> 
   </div>
-
+</br>
   <div>
-    <h5> Selection laffaire </h5>
+    <h5 class="form-inputs text-center"> Affaire </h5>
  <%= f.association :affaire, collection: Affaire.all, :value_method => :id %> 
   </div>
 

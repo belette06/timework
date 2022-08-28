@@ -18,6 +18,7 @@
 # Indexes
 #
 #  index_worktimes_on_affaire_id   (affaire_id)
+#  index_worktimes_on_id           (id) UNIQUE
 #  index_worktimes_on_weektime_id  (weektime_id)
 #
 # Foreign Keys

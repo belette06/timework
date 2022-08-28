@@ -11,26 +11,27 @@ User.destroy_all
 Weektime.destroy_all
 Affaire.destroy_all
 
-User.create(
-  email: 'teste@tt.com',
-  password: '123456',
-  role: 2
-)
+
+###################################################
+# USER CONFIGURED
+###################################################
+User.create( email: 'teste@tt.com', password: '123456', role: 2 )
 p "Created #{User.count} User"
 
+5.times do
+  User.create( email: Faker::Internet.email, password: '123456', role: 0 )
+  p "Created #{User.count} User"
+end
+
 3.times do
-  User.create(
-    email: Faker::Internet.email,
-    password: '123456',
-    role: 0
-  )
+  User.create(email: Faker::Internet.email, password: '123456', role: 1 )
   p "Created #{User.count} User"
 end
 
 ###################################################
-
-
- 3.times do
+# Weektime CONFIGURED
+###################################################
+ 30.times do
   Weektime.create(
     user_id: 1,
     dateweek: Faker::Date.between(from: '2022-07-01', to: '2022-08-31')
@@ -39,8 +40,10 @@ end
  end
 
 ###################################################
+# Weektime CONFIGURED
+###################################################
 
-3.times do
+50.times do
   Affaire.create(
     number: Faker::Invoice.reference,
     client: Faker::Name.name,
@@ -52,12 +55,16 @@ end
 
 ###################################################
 
-3.times do
-  Worktime.create(
-    weektime_id: 1,
-    gotime: DateTime.now,
-    endtime: DateTime.now + 3600,
-    daytime: Faker::Number.within(range: 1...3)
-  )
-  p "Created #{Worktime.count} Worktime"
-end
+#3.times do
+#
+#  day_create = worktimes.insert_all(
+#    weektime_id: Faker::Number.within(range: 1..15),
+#    gotime: DateTime.now,
+#    endtime: Faker::Date.between(Time.now + 2),
+#    daytime: Faker::Number.within(range: 1...3),
+#    affaire_id: Faker::Number.within(range: 1...30)
+#  )
+#  Worktime.upsert_all(day_create)
+#  p "Created #{Worktime.count} Worktime"
+#end
+#

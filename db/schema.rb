@@ -51,9 +51,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_172607) do
     t.boolean "accord", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "worktime_id"
+    t.bigint "worktimes_id"
+    t.index ["id"], name: "index_weektimes_on_id", unique: true
     t.index ["user_id"], name: "index_weektimes_on_user_id"
-    t.index ["worktime_id"], name: "index_weektimes_on_worktime_id"
+    t.index ["worktimes_id"], name: "index_weektimes_on_worktimes_id"
   end
 
   create_table "worktimes", force: :cascade do |t|
@@ -67,13 +68,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_172607) do
     t.datetime "updated_at", null: false
     t.bigint "affaire_id"
     t.index ["affaire_id"], name: "index_worktimes_on_affaire_id"
+    t.index ["id"], name: "index_worktimes_on_id", unique: true
     t.index ["weektime_id"], name: "index_worktimes_on_weektime_id"
   end
 
   add_foreign_key "affaires", "worktimes"
   add_foreign_key "users", "weektimes"
   add_foreign_key "weektimes", "users"
-  add_foreign_key "weektimes", "worktimes"
+  add_foreign_key "weektimes", "worktimes", column: "worktimes_id"
   add_foreign_key "worktimes", "affaires"
   add_foreign_key "worktimes", "weektimes"
 end

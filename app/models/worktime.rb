@@ -18,6 +18,7 @@
 # Indexes
 #
 #  index_worktimes_on_affaire_id   (affaire_id)
+#  index_worktimes_on_id           (id) UNIQUE
 #  index_worktimes_on_weektime_id  (weektime_id)
 #
 # Foreign Keys
@@ -29,7 +30,7 @@ class Worktime < ApplicationRecord
   belongs_to :weektime
   belongs_to :affaire
 
-  attribute :dayrecord
+  attribute :dayrecords
 
 
   enum daytime: { lundi: 1, mardi: 2, mercredi: 3, jeudi: 4, vendredi: 5, samedi: 6, dimanche: 0 }
@@ -52,7 +53,7 @@ class Worktime < ApplicationRecord
   #after_validation :calcul_max_heur
   before_validation :create_bluk_day, on: %i[create ]
 
-  paginates_per 15
+  paginates_per 10
 
 
 
@@ -63,6 +64,12 @@ class Worktime < ApplicationRecord
  # def 
  #   self.update_column(:accord)
  #end
+
+
+
+
+
+
 
   def update_daytime
     self.daytime = daytime
@@ -82,7 +89,7 @@ class Worktime < ApplicationRecord
            gotime: gotime,
            endtime: endtime,
            workday: workday = endtime - gotime,
-           affaire_ids: affaire_id,
+           affaire_id: affaire_id,
            created_at: Time.now, 
            updated_at: Time.now,
           } 
