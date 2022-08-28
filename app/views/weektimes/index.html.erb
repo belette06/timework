@@ -1,5 +1,5 @@
 </br>
-<h1 class="text-center">Weektimes</h1>
+<h1 class="text-center">Feuilles d'heures</h1>
 
 <hr>
   <div class="d-flex justify-content-end container text-center">
@@ -9,27 +9,21 @@
    <div class="table-responsive" data-controller="checkerbox-weektimes">
        <table class="table table-lightdark table-striped mt-3">
         <thead class="thead-light">
-          <tr>
+          <%= content_tag :tr , scope: "row" do %>
             <th scope="col" class="text-center"><strong>SEMAINE</strong></th>
             <th scope="col" class="text-center"><strong>HEURES</strong></th>
             <th scope="col" class="text-center"><strong>VALIDER</strong></th>
             <th scope="col" class="text-center"></th>
-            <th scope="col" class="text-center"></th>
           
-          </tr>
+        <% end %>
         </thead>
            <tbody> 
             <%= render partial: "weektimes/weektime" %>
           </tbody>
           <thead class="thead-light">
-          <tr>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-            <th> </th>
-          </tr>
+          <%= content_tag :tr , scope: "row" do %>
+          <td colspan="4"><strong></strong></td>
+          <% end %>
         </thead>        
        </table>
   

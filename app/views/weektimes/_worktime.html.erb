@@ -6,15 +6,17 @@
     <tr scope="row"> <td colspan="7"></td> </tr>
  <% else %>   
    <% @worktimes.order(:daytime).each do |work| %>
-   <%= content_tag :tr, id: dom_id(work), class: "dom_class(work)", scope: "row" do %>     
-        <td class="text-center"><%= work.daytime %></td>
-        <td class="text-center"><%= work.affaire.title unless work.affaire.nil? %> </td>
-        <td class="text-center"><%= work.gotime.to_fs(:time) %></td>
-        <td class="text-center"><%= work.endtime.to_fs(:time) %></td> 
-        <td class="text-center"><%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+   
+   <%= content_tag :tr, id: dom_id(work), class: "dom_class(work)", scope: "row" do %>   
+   <%= link_to edit_weektime_worktime_path(@weektime.id,work) do  %>  
+        <th class="text-center" colspan="1"> <%= work.daytime %></th>
+        <td class="text-center" colspan="1"> <%= work.affaire.title unless work.affaire.nil? %> </td>
+        <td class="text-center" colspan="1"> <%= work.gotime.to_fs(:time) %></td>
+        <td class="text-center" colspan="1"> <%= work.endtime.to_fs(:time) %></td> 
+        <td class="text-center" colspan="1"> <%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
         
-
-<td class="text-center">
+<% end %> 
+<td class="text-center" scope="col">
       <%= check_box_tag "accord", work.accord,work.accord, { multiple: true, data: { 
                                                   checkerbox_worktimes_target: "child",
                                                   id: work.id, 
@@ -22,11 +24,10 @@
                                                   action: "checkerbox-worktimes#toggle change->checkerbox-worktimes#toggleParent" 
                                                   }} %>
       </td>
-
-        <td class="text-center"><%= link_to "Edit", edit_weektime_worktime_path(@weektime.id,work), class: "btn btn-outline-success btn-sm", "data-controller": "turbo" %>      
+        <td class="text-center inline-block" scope="col"><%= link_to "Edit", edit_weektime_worktime_path(@weektime.id,work), class: "btn btn-outline-success btn-sm", "data-controller": "turbo" %>      
                                 <%= link_to "X", weektime_worktime_path(@weektime.id,work), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-sm" %>   </td>   
-     
-     <% end %>                                  
-   <%#end %>    
+       
+                                      
+   <%end %>    
  <%end%>  
 <%end%>  
