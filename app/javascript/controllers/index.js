@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CheckerboxWeektimesController from "./checkerbox_weektimes_controller"
+application.register("checkerbox-weektimes", CheckerboxWeektimesController)
+
 import CheckerboxWorktimesController from "./checkerbox_worktimes_controller"
 application.register("checkerbox-worktimes", CheckerboxWorktimesController)
 

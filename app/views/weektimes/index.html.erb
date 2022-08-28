@@ -6,13 +6,13 @@
     <%= link_to "Nouvelle feuille d'heure", new_weektime_path, class:"btn btn-outline-secondary btn-sm", "data-controller": "turbo" %>
   </div>
 <hr>
-  <div class="container">
+   <div class="table-responsive" data-controller="checkerbox-weektimes">
        <table class="table table-lightdark table-striped mt-3">
         <thead class="thead-light">
           <tr>
-            <th scope="col" class="text-center"><strong>Dateweek</strong></th>
-            <th scope="col" class="text-center"><strong>Workweek</strong></th>
-            <th scope="col" class="text-center"><strong>Accord</strong></th>
+            <th scope="col" class="text-center"><strong>SEMAINE</strong></th>
+            <th scope="col" class="text-center"><strong>HEURES</strong></th>
+            <th scope="col" class="text-center"><strong>VALIDER</strong></th>
             <th scope="col" class="text-center"></th>
             <th scope="col" class="text-center"></th>
           

@@ -26,6 +26,7 @@
         <td class="text-center"><%= link_to "Edit", edit_weektime_worktime_path(@weektime.id,work), class: "btn btn-outline-success btn-sm", "data-controller": "turbo" %>      
                                 <%= link_to "X", weektime_worktime_path(@weektime.id,work), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-sm" %>   </td>   
      
-     <% end %>                                    
+     <% end %>                                  
+   <%#end %>    
  <%end%>  
 <%end%>  

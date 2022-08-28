@@ -2,7 +2,7 @@
 
 # class WeektimesController < InheritedResources::Base
 class WeektimesController < ApplicationController
-  before_action :set_weektime, only: %i[show edit update destroy]
+  before_action :set_weektime, only: %i[show edit update destroy toggle]
 
   before_action :authenticate_user! do
     redirect_to new_user_session_path unless current_user
@@ -21,11 +21,10 @@ class WeektimesController < ApplicationController
   def show
     
     @worktimes = @weektime.worktimes.page params[:page]
-    @weektime.workweek = 0
+    
+    @weektime.workweek = @worktimes.sum(&:workday)
 
     @worktimes.each { |wo| @weektime.workweek = @weektime.workweek + wo.workday}
-
-   
 
   end
 
@@ -83,14 +82,8 @@ class WeektimesController < ApplicationController
     end
   end
 
-
-  def upper
-    weektimetowork = Weektime.find(params[:id])
-   
-    @worktimes = weektimetowork.worktimes.check_accord
-   
-  
-    render json: { message: "Success" }
+  def toggle
+     @weektime.update(accord: params[:accord])
   end
 
   private
