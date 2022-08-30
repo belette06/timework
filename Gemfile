@@ -18,6 +18,7 @@ gem 'stimulus-rails', '~> 1.1'
 gem 'turbo-rails'
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
+gem "mini_magick"
 gem 'ransack', '~> 3.2', '>= 3.2.1'
 gem 'bootstrap5-kaminari-views'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
@@ -33,7 +34,7 @@ gem 'sassc-rails'
 gem 'simple_form', '~> 5.1'
 gem 'simple_form_datetimepicker', '~> 0.0.9'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -42,10 +43,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 2.22'
-  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+
   gem 'rubocop', '~> 1.35'
-  gem 'shoulda-matchers', '~> 5.1'
-  gem 'simplecov', '~> 0.21.2'
+ 
 end
 
 group :development do
@@ -64,4 +64,8 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'shoulda-matchers', '~> 5.1'
+  gem 'simplecov', '~> 0.21.2'
+  gem 'rspec-rails', '~> 5.1', '>= 5.1.2'
+  gem 'rails_helper', '~> 2.2', '>= 2.2.2'
 end

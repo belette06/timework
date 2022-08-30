@@ -7,7 +7,7 @@ class CreateProfils < ActiveRecord::Migration[7.0]
       t.string :phone
       t.string :phone_supl
       t.string :job
-      t.references :adresse, null: false, foreign_key: true
+      t.references :adresse, foreign_key: true
 
       t.timestamps
     end

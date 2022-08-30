@@ -10,7 +10,7 @@
 #  phone_supl :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  adresse_id :bigint           not null
+#  adresse_id :bigint
 #  user_id    :bigint           not null
 #
 # Indexes

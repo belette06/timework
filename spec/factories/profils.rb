@@ -10,7 +10,7 @@
 #  phone_supl :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  adresse_id :bigint           not null
+#  adresse_id :bigint
 #  user_id    :bigint           not null
 #
 # Indexes
@@ -26,11 +26,11 @@
 FactoryBot.define do
   factory :profil do
     user { nil }
-    firstname { "MyString" }
-    lastname { "MyString" }
-    phone { "MyString" }
-    phone_supl { "MyString" }
-    job { "MyString" }
+    firstname { Faker::Name.first_name }
+    lastname { Faker::Name.name }
+    phone { Faker::Number.leading_zero_number(digits: 10)  }
+    phone_supl { Faker::Number.leading_zero_number(digits: 10)  }
+    job { Faker::Job.title }
     adresse { nil }
   end
 end

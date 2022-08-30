@@ -15,6 +15,7 @@ Affaire.destroy_all
 ###################################################
 # USER CONFIGURED
 ###################################################
+
 User.create( email: 'teste@tt.com', password: '123456', role: 2 )
 p "Created #{User.count} User admin"
 

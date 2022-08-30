@@ -7,14 +7,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   skip_before_action :require_no_authentication
   
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   def new
+     super
+   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super    
+   end
 
   # GET /resource/edit
   # def edit
@@ -51,6 +51,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def sign_up(resource_name, resource)
     true
+  end
+
+  def profil_params
+    params.require(:profil).permit(:firstname, :lastname, :phone , :phone_supl, :job )
   end
 
 # protected

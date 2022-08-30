@@ -1,17 +1,20 @@
-
-  
-    <% if current_user%>
-    <section class= "container border p-3 mb-4">
+  <% if current_user%>
+  <section class="border container" >
+  <div class="row">
+    <div class= " border col-sm-7 p-3 mb-4">
     <h2 class= "text-center font-weight-bold" >Profil</h2>
       <div class= "Wrapper text-center" >
         <p> Hello <%= current_user.email %> ! </p>
          <p> tu es <%= current_user.role %> ! </p>
-      </div>
-    </section>
-        </hr>
-        </br>
 
-    <section class= "container border p-3 mb-4 " >
+         <%if current_user.profil.nil? %>
+    <div class="container alert alert-danger text-center"> <%=link_to "crée ton profil", new_profil_path(current_user), class:"btn btn-outline-danger"%> </div> 
+  <%end%>
+      </div>
+    </div>
+  
+
+    <div class= "border col-sm-5 p-3 mb-4">
     
         <h2 class= "text-center font-weight-bold" >Gestion des heures</h2>
         </br>
@@ -22,7 +25,9 @@
           <%= button_to "Toutes mes heures", weektimes_path, method: :get , class:"btn btn-outline-secondary" %>
         </div>
         </br>
-    </section>
+    </div>
+</div >
+</section>
       <section class= "container border p-3 mb-4 " >
   
       <h2 class= "text-center font-weight-bold" >Gestion des affaires</h2>
