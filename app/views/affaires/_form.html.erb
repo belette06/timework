@@ -3,14 +3,48 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs text-center" >
+  <div class="row text-center " >
+  <div class="col-sm-4 p-4">
     <%= f.input :number %>
     <%= f.input :client %>
-    <%= f.input :address %>
-    <%= f.input :title %>
+     <%= f.input :title %>
+    </div>
+
+
+    <div class="col-sm-3">
+    </div >
+
+    <div class=" col-sm-5 p-4">
+      <%= simple_fields_for @adresse do |adr| %>
+      <div class="row">
+      <div class="col-sm-3">
+        <%= adr.input :number %>
+       </div> 
+       <div class="col-sm-9">
+        <%= adr.input :street %>
+        </div>
+        </div>
+        <div class="col-sm-12">
+        <%= adr.input :street2 %>
+        </div>
+        <div class="row" >
+         <div class="col-sm-6">
+         <%= adr.input :city, placeholder:"Ville" %>
+         </div>
+         <div class="col-sm-3">
+          <%= adr.input :zip, placeholder:"Code postal" %>
+        </div>
+        <div class="col-sm-3">
+          <%= adr.input :contry, placeholder:"Pays" %>
+        </div>
+        </div>  
+         <div class="col-sm-11 container"
+        <%= adr.input :body, as: :text %>
+        </div>
+      <%end%>  
   </div>
-</br>
-  <div class="form-actions text-center">
+</br></br>
+  <div class="p-4 justify-content-center">
     <%= f.button :submit ,class:"btn btn-outline-secondary" %>
   </div>
 <% end %>

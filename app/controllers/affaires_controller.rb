@@ -12,7 +12,10 @@ class AffairesController < ApplicationController
   end
 
   def show
-    @affaire.worktimes.page params[:page]
+  
+    @afpg= @affaire.worktimes.page params[:page] 
+
+  
     @affaire.workaffaire = 0
     @affaire.worktimes.each do |work| 
        @affaire.workaffaire = @affaire.workaffaire + work.workday
@@ -22,6 +25,7 @@ class AffairesController < ApplicationController
 
   def new
     @affaire = Affaire.new
+    @adresse = @affaire.build_adresse
   end
 
   # GET /affaires/1/edit
@@ -29,9 +33,12 @@ class AffairesController < ApplicationController
 
   def create
     @affaire = Affaire.new(affaire_params)
+    @affaire.adresse_id = @affaire.build_adresse(adresse_params)
 
     respond_to do |format|
+    
       if @affaire.save
+       
         format.html { redirect_to affaire_url(@affaire), notice: 'affairee was successfully created.' }
         format.json { render :show, status: :created, location: @affaire }
       else
@@ -71,6 +78,11 @@ class AffairesController < ApplicationController
   end
 
   def affaire_params
-    params.require(:affaire).permit(:number, :client, :address, :title, :workaffaire, worktime_id: [])
+    params.require(:affaire).permit(:number, :client,  :title, :workaffaire,adresse_id: [:adresse_id, :number, :street, :street2 , :zip, :city, :contry, :body] , worktime_ids: [])
+  end
+
+  
+  def adresse_params
+    params.require(:adresse).permit(:number, :street, :street2 , :zip, :city, :contry, :body)
   end
 end

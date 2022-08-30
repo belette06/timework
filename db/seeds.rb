@@ -16,54 +16,84 @@ Affaire.destroy_all
 # USER CONFIGURED
 ###################################################
 User.create( email: 'teste@tt.com', password: '123456', role: 2 )
-p "Created #{User.count} User"
+p "Created #{User.count} User admin"
 
 5.times do
   User.create( email: Faker::Internet.email, password: '123456', role: 0 )
-  p "Created #{User.count} User"
 end
+p "Created #{User.count} User technicien"
 
 3.times do
   User.create(email: Faker::Internet.email, password: '123456', role: 1 )
-  p "Created #{User.count} User"
 end
+p "Created #{User.count} User moderateur"
 
 ###################################################
 # Weektime CONFIGURED
 ###################################################
- 30.times do
-  Weektime.create(
+weektimes= []
+
+30.times do
+ w = Weektime.new(
     user_id: 1,
-    dateweek: Faker::Date.between(from: '2022-07-01', to: '2022-08-31')
+    dateweek: Faker::Date.between(from: '2022-07-01', to: '2022-08-31'),
   )
-  p "Created #{Weektime.count} Weektime"
+  w.save
+weektimes << w
  end
+ p "Created #{Weektime.count} Weektime"
 
 ###################################################
-# Weektime CONFIGURED
+# Adresse CONFIGURED
 ###################################################
 
-50.times do
-  Affaire.create(
-    number: Faker::Invoice.reference,
-    client: Faker::Name.name,
-    address: Faker::Address.street_address,
-    title: Faker::Construction.heavy_equipment
-  )
-  p "Created #{Affaire.count} Affaire"
+ 
+adresse =[]
+
+ 30.times do
+ adr = Adresse.new(
+  number: Faker::Invoice.reference,
+  street: Faker::Address.street_address,  
+  street2: Faker::Address.secondary_address,
+  zip: Faker::Address.zip,
+  city: Faker::Address.city,
+  contry: Faker::Address.country,
+  body: Faker::Lorem.paragraph
+)
+adr.save
+adresse << adr
 end
+p "Created #{Adresse.count} Adresse"
 
+
+###################################################
+# Affaires CONFIGURED
+###################################################
+
+#50.times do
+#  Affaire.new(
+#    number: Faker::Invoice.reference,
+#    client: Faker::Name.name,
+#    title: Faker::Construction.heavy_equipment,
+#    adresse_id: adresse.find_by(1..10)
+#
+#  ).save
+#  p "Created #{Affaire.count} Affaire"
+#end
+#
 ###################################################
 
 #3.times do
 #
 #  day_create = worktimes.insert_all(
-#    weektime_id: Faker::Number.within(range: 1..15),
+#    weektime_id: ,
 #    gotime: DateTime.now,
 #    endtime: Faker::Date.between(Time.now + 2),
 #    daytime: Faker::Number.within(range: 1...3),
 #    affaire_id: Faker::Number.within(range: 1...30)
-#  )
+
+#  ) 
+
 #  Worktime.upsert_all(day_create)
 #  p "Created #{Worktime.count} Worktime"
 #end

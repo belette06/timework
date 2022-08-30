@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   authenticated :user, ->(user) {user.admin?} do
     get 'admin', to: 'admin#index'
     get 'admin/users'
@@ -17,13 +18,20 @@ Rails.application.routes.draw do
                                     registrations:'users/registrations'
                                   }
 
+
+authenticated :user, ->(user) {user.admin?} do
   resources :weektimes do
     resources :worktimes
   end
   post "/worktimes/:id/toggle", to: "worktimes#toggle", as: 'worktimes_checkbox' #bouton checkbox worktime
   post "/worktimes/:id/upper", to: "worktimes#upper", as: 'worktimes_checkbox_all' #bouton checkbox_all worktime
   post "/weektimes/:id/toggle", to: "weektimes#toggle", as: 'weektimes_checkbox' #bouton checkbox weektime
+  
+  resources :profils
+end
 
+
+  resources :adresses
   resources :affaires
 
 

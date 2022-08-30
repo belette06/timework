@@ -29,7 +29,7 @@
             <tr>
                 <td class="text-center"> <%= affaire.number %></td>
                 <td class="text-center"> <%= affaire.client %></td>
-                <td class="text-center"> <%= affaire.address %></td>
+                <td class="text-center"> <%= affaire.adresse.full_adresse %></td>
                 <td class="text-center"> <%= affaire.title %></td>
                 <td class="text-center"> <%= !affaire.worktime_ids.empty? %></td>
                 <td class="text-center"> <%= Time.at(affaire.workaffaire).utc.strftime("%HH %Mmin")%></td>
