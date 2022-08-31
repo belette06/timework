@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def edit; 
+  def edit 
     if @profile.adresse.nil?
       @adresse = @profile.adresse 
     else

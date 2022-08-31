@@ -29,7 +29,13 @@ class AffairesController < ApplicationController
   end
 
   # GET /affaires/1/edit
-  def edit; end
+  def edit
+    if @affaire.adresse.nil?
+       @adresse = @affaire.adresse 
+    else
+       @adresse = @affaire.build_adresse 
+    end
+  end
 
   def create
     @affaire = Affaire.new(affaire_params)
@@ -50,6 +56,13 @@ class AffairesController < ApplicationController
 
   # PATCH/PUT /affaires/1 or /affaires/1.json
   def update
+    if @affaire.adresse.nil?
+       @adresse = @affaire.build_adresse(adresse_params)
+       @adresse.save
+    else
+       @adresse = @affaire.adresse.update(adresse_params)
+    end
+
     respond_to do |format|
       if @affaire.update(affaire_params)
         format.html { redirect_to affaire_url(@affaire), notice: 'affaire was successfully updated.' }
