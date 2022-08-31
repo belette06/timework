@@ -1,0 +1,33 @@
+<div id="<%= dom_id profile %>", class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+    <%= image_tag(profile.avatar_thumbnail) if profile.avatar.attached?%>
+
+    <H5>
+          <%= profile.full_name %>   
+    </H5>
+  </div>
+
+  <p>
+    <strong>phone:</strong>
+    <%= profile.phone %>
+  </p>
+
+  <p>
+    <strong>phone perso:</strong>
+    <%= profile.phone_supl %>
+  </p>
+
+    <p>
+    <strong>Profession: </strong>
+     <%= profile.job %> 
+  </p>
+
+      <p>
+    <strong>adresse: </strong>
+     <%= profile.adresse.full_adresse  %> 
+  </p>
+
+<%= link_to "modifier", edit_profile_path(profile)%>
+</div>

@@ -27,7 +27,7 @@
 #
 class Affaire < ApplicationRecord
   belongs_to :adresse
-  #accepts_nested_attributes_for :adresse
+  
   has_many :worktimes
   accepts_nested_attributes_for :worktimes
 

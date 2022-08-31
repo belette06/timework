@@ -25,9 +25,9 @@
         <% if current_user.admin? %>
             | <li class="nav-item"><%= link_to "Admin", admin_path ,class: "nav-link"%></li>
         <%end%>  
-        <% unless current_user.profil.nil?%>  
-          <li  class="nav-item"><%= link_to  profil_path(current_user), class:"nav-link" do %> 
-                                <%= image_tag(current_user.profil.avatar_nav) if current_user.profil.avatar.attached?  %> </li>
+        <% unless current_user.profile.nil?%>  
+          <li  class="nav-item"><%= link_to  profile_path(current_user), class:"nav-link" do %> 
+                                <%= image_tag(current_user.profile.avatar_nav) if current_user.profile.avatar.attached?  %> </li>
                 <%end%>
         <%end%>
           <li  class="nav-item"><%#= link_to "Edit Account", edit_user_registration_path, class:"nav-link" %></li>          

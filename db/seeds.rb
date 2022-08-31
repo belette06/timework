@@ -49,39 +49,39 @@ weektimes << w
 ###################################################
 
  
-adresse =[]
-
- 30.times do
- adr = Adresse.new(
-  number: Faker::Invoice.reference,
-  street: Faker::Address.street_address,  
-  street2: Faker::Address.secondary_address,
-  zip: Faker::Address.zip,
-  city: Faker::Address.city,
-  contry: Faker::Address.country,
-  body: Faker::Lorem.paragraph
-)
-adr.save
-adresse << adr
-end
-p "Created #{Adresse.count} Adresse"
-
-
+#adresse =[]
+#
+# 30.times do
+# adr = Adresse.new(
+#  number: Faker::Invoice.reference,
+#  street: Faker::Address.street_address,  
+#  street2: Faker::Address.secondary_address,
+#  zip: Faker::Address.zip,
+#  city: Faker::Address.city,
+#  contry: Faker::Address.country,
+#  body: Faker::Lorem.paragraph
+#)
+#adr.save
+#adresse << adr
+#end
+#p "Created #{Adresse.count} Adresse"
+#
+#
 ###################################################
 # Affaires CONFIGURED
 ###################################################
 
-#50.times do
-#  Affaire.new(
-#    number: Faker::Invoice.reference,
-#    client: Faker::Name.name,
-#    title: Faker::Construction.heavy_equipment,
-#    adresse_id: adresse.find_by(1..10)
-#
-#  ).save
-#  p "Created #{Affaire.count} Affaire"
-#end
-#
+50.times do
+  Affaire.new(
+    number: Faker::Invoice.reference,
+    client: Faker::Name.name,
+    title: Faker::Construction.heavy_equipment,
+    adresse_id: adresse.find_by(1..10)
+
+  ).save
+  p "Created #{Affaire.count} Affaire"
+end
+
 ###################################################
 
 #3.times do

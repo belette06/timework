@@ -5,11 +5,8 @@
     <h2 class= "text-center font-weight-bold" >Profil</h2>
       <div class= "Wrapper text-center" >
         <p> Hello <%= current_user.email %> ! </p>
-         <p> tu es <%= current_user.role %> ! </p>
-
-         <%if current_user.profil.nil? %>
-    <div class="container alert alert-danger text-center"> <%=link_to "crée ton profil", new_profil_path(current_user), class:"btn btn-outline-danger"%> </div> 
-  <%end%>
+        <p> tu es <%= current_user.role %> ! </p>
+        <p> le profile est nil ? <%= current_user.profile.nil? %> ! </p>
       </div>
     </div>
   

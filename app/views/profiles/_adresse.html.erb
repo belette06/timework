@@ -1,0 +1,30 @@
+<div class=" border col-sm-5 p-4">
+ <H3> ADRESSE </h3>
+     <%= simple_fields_for @adresse do |adr| %>
+        <div class="row">
+            <div class="col-sm-3 p-1">
+                <%= adr.input :number, placeholder: "N°", label: false %>
+            </div> 
+            <div class="col-sm-9 p-1">
+                <%= adr.input :street, placeholder: "rue", label: false  %>
+            </div>
+        </div>
+        <div class="col-sm-12 row p-1">
+            <%= adr.input :street2, placeholder: "complement", label: false  %>
+        </div>
+        <div class="row" >
+            <div class="col-sm-6">
+                <%= adr.input :city, placeholder:"Ville", label: false %>
+            </div>
+            <div class="col-sm-3">
+                <%= adr.input :zip, placeholder:"Code postal" , label: false%>
+            </div>
+            <div class="col-sm-3">
+                <%= adr.input :contry, placeholder:"Pays", label: false %>
+            </div>
+        </div>  
+        <div class="col-sm-11 container p-1">
+            <%= adr.input :body, as: :text, placeholder: "texte", label: false  %>
+        </div>
+     <%end%>  
+</div>

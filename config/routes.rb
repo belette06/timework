@@ -27,7 +27,7 @@ authenticated :user, ->(user) {user.admin?} do
   post "/worktimes/:id/upper", to: "worktimes#upper", as: 'worktimes_checkbox_all' #bouton checkbox_all worktime
   post "/weektimes/:id/toggle", to: "weektimes#toggle", as: 'weektimes_checkbox' #bouton checkbox weektime
   
-  resources :profils
+  resources :profiles
 end
 
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_30_175732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
   end
 
   create_table "adresses", force: :cascade do |t|
-    t.bigint "affaires_id"
     t.string "number"
     t.string "street", null: false
     t.string "street2"
@@ -53,12 +52,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "profils_id"
-    t.index ["affaires_id"], name: "index_adresses_on_affaires_id"
-    t.index ["profils_id"], name: "index_adresses_on_profils_id"
   end
 
   create_table "affaires", force: :cascade do |t|
+    t.bigint "adresse_id"
     t.string "number"
     t.string "client"
     t.string "title"
@@ -66,13 +63,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
     t.bigint "worktime_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "adresse_id", null: false
     t.index ["adresse_id"], name: "index_affaires_on_adresse_id"
     t.index ["id"], name: "index_affaires_on_id", unique: true
     t.index ["worktime_id"], name: "index_affaires_on_worktime_id"
   end
 
-  create_table "profils", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "firstname"
     t.string "lastname"
@@ -82,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
     t.bigint "adresse_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["adresse_id"], name: "index_profils_on_adresse_id"
-    t.index ["user_id"], name: "index_profils_on_user_id"
+    t.index ["adresse_id"], name: "index_profiles_on_adresse_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,9 +92,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "weektime_id"
-    t.bigint "profil_id"
+    t.bigint "profile_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["profil_id"], name: "index_users_on_profil_id"
+    t.index ["profile_id"], name: "index_users_on_profile_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["weektime_id"], name: "index_users_on_weektime_id"
   end
@@ -134,13 +130,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_184540) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "adresses", "affaires", column: "affaires_id"
-  add_foreign_key "adresses", "profils", column: "profils_id"
   add_foreign_key "affaires", "adresses", column: "adresse_id"
   add_foreign_key "affaires", "worktimes"
-  add_foreign_key "profils", "adresses", column: "adresse_id"
-  add_foreign_key "profils", "users"
-  add_foreign_key "users", "profils"
+  add_foreign_key "profiles", "adresses", column: "adresse_id"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "users", "profiles"
   add_foreign_key "users", "weektimes"
   add_foreign_key "weektimes", "users"
   add_foreign_key "weektimes", "worktimes", column: "worktimes_id"

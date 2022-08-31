@@ -13,24 +13,24 @@
 #  role                   :integer          default("technicien")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  profil_id              :bigint
+#  profile_id             :bigint
 #  weektime_id            :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
-#  index_users_on_profil_id             (profil_id)
+#  index_users_on_profile_id            (profile_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_weektime_id           (weektime_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (profil_id => profils.id)
+#  fk_rails_...  (profile_id => profiles.id)
 #  fk_rails_...  (weektime_id => weektimes.id)
 #
 class User < ApplicationRecord
-  has_one :profil
-  accepts_nested_attributes_for :profil
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
   has_many :weektimes
   accepts_nested_attributes_for :weektimes
 
@@ -41,8 +41,13 @@ class User < ApplicationRecord
 
   enum role: %i[technicien moderateur admin]
   after_initialize :set_default_role, if: :new_record?
+  after_create :created_profile
 
-  
+  def created_profile
+    prof= self.create_profile!
+    self.profile_id = prof.id
+    self.save!
+  end
 
   paginates_per 20
 
@@ -51,16 +56,13 @@ class User < ApplicationRecord
     self.role ||= :technicien
   end
 
-
-
-
-
+ 
 private
 
-def admin
-  self.role ||= :admin
-end
-
+  def admin
+    self.role ||= :admin
+  end
+  
 
 
 end

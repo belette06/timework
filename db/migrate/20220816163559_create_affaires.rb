@@ -3,6 +3,7 @@
 class CreateAffaires < ActiveRecord::Migration[7.0]
   def change
     create_table :affaires do |t|
+      t.references :adresse, foreign_key: true
       t.string :number
       t.string :client
       t.string :title
