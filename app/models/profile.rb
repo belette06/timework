@@ -25,7 +25,7 @@
 #
 class Profile < ApplicationRecord
   belongs_to :user
-  belongs_to :adresse
+  belongs_to :adresse, optional: true
  
 
 

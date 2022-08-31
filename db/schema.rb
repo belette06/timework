@@ -44,11 +44,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_175732) do
 
   create_table "adresses", force: :cascade do |t|
     t.string "number"
-    t.string "street", null: false
+    t.string "street"
     t.string "street2"
-    t.string "zip", null: false
-    t.string "city", null: false
-    t.string "contry", null: false
+    t.string "zip"
+    t.string "city"
+    t.string "contry"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
