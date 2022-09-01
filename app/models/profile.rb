@@ -42,7 +42,7 @@ class Profile < ApplicationRecord
     if avatar.attached?
       avatar.variant(resize_to_limit: [150,150]).processed 
     else
-      "/default_avatar.jpg"
+      "default_avatar.jpg"
     end
   end
 
@@ -50,7 +50,7 @@ class Profile < ApplicationRecord
     if avatar.attached?
       avatar.variant(resize_to_limit: [30,25]).processed 
     else
-      "/default_avatar.jpg"
+      "avatar_nav.png"
     end
   end
 

@@ -26,7 +26,7 @@
 
       <p>
     <strong>adresse: </strong>
-     <%= profile.adresse.full_adresse  %> 
+     <%= profile.adresse.full_adresse unless profile.adresse.nil? %> 
   </p>
 
 <%= link_to "modifier", edit_profile_path(profile)%>
