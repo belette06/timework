@@ -1,0 +1,54 @@
+<div class="container">
+    <h1 class="text-center">Administrator Dashbord</h1>
+      <%= render 'admin/nav_links'%>
+    <div class="text-center mt-5">    
+        <div class="btn-group">
+            <%= link_to 'Edit', edit_affaire_path(@affaire), class:"btn btn-warning" %>
+            <%= button_to 'Delete', @affaire, method: :delete, data: { confirm: "Are you sur?"}, class:"btn btn-danger" %>
+        </div>
+    </div>
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>Numéro:</strong> <%= @affaire.number %>%>
+  </p>    
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>client:</strong> <%= @affaire.client %> 
+  </p>    
+</div>
+<div class="row mt-1">
+  <p>
+    <strong>address:</strong> <%= @affaire.address %> 
+  </p>    
+<div class="row mt-1 texte-center">
+  <p>
+    <strong>address:</strong> <%= @affaire.title %> 
+  </p>    
+
+      <table class="table table-dark table-striped mt-3"> 
+        <thead>
+            <th scope="col">User</th>
+            <th scope="col">Jour</th>
+            <th scope="col">Début</th>
+            <th scope="col">Fin</th>
+            <th scope="col">Temps</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </thead>
+
+
+         <% @affaire.worktimes.each do |work| %>
+            <tr>
+              <th scope="row"><%= work.gotime.to_fs(:time) %></th>
+              <td ><%= work.daytime %> </td>
+              <td ><%= work.gotime.to_fs(:time) %></td>
+              <td ><%= work.endtime.to_fs(:time) %></td> 
+              <td ><%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+              <td ><%= button_to "Supprimer", weektime_worktime_path(work), method: :delete, form: { data: { 'turbo-confirm': 'Vous etes sur ?' } } ,class:"btn btn-outline-danger btn-sm" %> </td>
+              <td ><%= button_to "modif.", edit_weektime_worktime_path(work), method: :delete ,class:"btn btn-outline-info btn-sm" %>              
+              </td>
+            </tr>
+          <% end %>
+</div>

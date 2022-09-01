@@ -27,7 +27,9 @@
 class Depannage < ApplicationRecord
   has_many :worktimes
   accepts_nested_attributes_for :worktimes
+
   belongs_to :adresse
+  
 
-
+paginates_per 10
 end

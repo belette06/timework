@@ -8,7 +8,7 @@
 #  accord       :boolean          default(FALSE)
 #  dateweek     :date
 #  numsemaine   :integer
-#  workweek     :float            default(0.0)
+#  workweek     :integer          default(0)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :bigint           not null
@@ -30,7 +30,7 @@ class Weektime < ApplicationRecord
   has_many :worktimes, dependent: :delete_all
   accepts_nested_attributes_for :worktimes
 
-  attr_accessor :flash_alert_message
+  attr_accessor :flash_alert_message, :to_do_time
 
   validates_presence_of :dateweek
   validates_uniqueness_of :numsemaine, scope: :user_id,
@@ -48,6 +48,18 @@ class Weektime < ApplicationRecord
   paginates_per 8
   
   
+  def to_do_time(s)
+    h = s / 3600
+    s -= h * 3600
+  
+    m = s / 60
+    s -= m * 60
+  
+    [h, m].join(":")
+  end
+
+
+
   private
 
 
@@ -71,5 +83,7 @@ class Weektime < ApplicationRecord
       raise ActiveRecord::Rollback
     end
   end
+
+
 
 end

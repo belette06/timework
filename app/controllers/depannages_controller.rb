@@ -6,7 +6,7 @@ class DepannagesController < ApplicationController
   end
 
   def index
-    @depannage = Depannage.page params[:page]
+    @depannages = Depannage.page params[:page]
   end
   
   def show

@@ -41,7 +41,7 @@ class Worktime < ApplicationRecord
 
 
   # attr_reader :set_jour
-  attr_accessor :flash_alert_message
+  attr_accessor :flash_alert_message, :to_time
  
   before_validation :insert_weektime_id, on: %i[create update edit]
   before_validation :insert_daytime, on: %i[create] 
@@ -114,7 +114,6 @@ class Worktime < ApplicationRecord
 
   def calcul_heure
     self.workday = endtime - gotime
-
   end
 
   def add_affaire_in_work
@@ -133,6 +132,7 @@ class Worktime < ApplicationRecord
       self.flash_alert_message = 'Erreur de sasie des heures'
       raise ActiveRecord::Rollback
     end
+
   end
 
 

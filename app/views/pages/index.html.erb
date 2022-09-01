@@ -1,68 +1,54 @@
-  <% if current_user%>
+<% if current_user%>
   <section class="border container" >
-  <div class="row">
-    <div class= " border col-sm-7 p-3 mb-4">
-    <h2 class= "text-center font-weight-bold" >Profil</h2>
-      <div class= "Wrapper text-center" >
-        <p> Hello <%= current_user.email %> ! </p>
-        <p> tu es <%= current_user.role %> ! </p>
-        <p> le profile est nil ? <%= current_user.profile.nil? %> ! </p>
+    <div class="row">
+      <div class= " border col-sm-7 p-3 mb-4">
+        <h2 class= "text-center font-weight-bold" >Profil</h2>
+        <div class= "Wrapper text-center" >
+          <p> Hello <%= current_user.email %> ! </p>
+          <p> tu es <%= current_user.role %> ! </p>
+          <p> le profile est nil ? <%= current_user.profile.nil? %> ! </p>
+        </div>
       </div>
-    </div>
-  
-
-    <div class= "border col-sm-5 p-3 mb-4">
-    
+      <div class= "border col-sm-5 p-3 mb-4">
         <h2 class= "text-center font-weight-bold" >Gestion des heures</h2>
         </br>
         <div class= "text-center  " >
-          <%#= button_to "feuille d'heures", new_weektime_path, method: :get , class:"btn btn-outline-secondary" %>
            <%= link_to "feuille d'heures", new_weektime_path,"data-controller": "turbo" , class:"btn btn-outline-secondary"  %>
           </br></br>
-          <%= button_to "Toutes mes heures", weektimes_path, method: :get , class:"btn btn-outline-secondary" %>
+            <%= button_to "Toutes mes heures", weektimes_path, method: :get , class:"btn btn-outline-secondary" %>
         </div>
-        </br>
-    </div>
-</div >
-
-
-
-
-</section>
-      <section class= "container border p-3 mb-4 " >
   
-      <h2 class= "text-center font-weight-bold" >Gestion des affaires</h2>
-      </br>
-      <div class= "text-center  " >
-        <%#= link_to "add affaire", new_affaire_path,"data-controller": "turbo" , class:"btn btn-outline-secondary"  %>
-         <%= link_to "add affaire", new_affaire_path, class:"btn btn-outline-secondary"  %>
-        </br></br>
-        <%= button_to "Toutes les AFFAIRES", affaires_path, method: :get ,class:"btn btn-outline-secondary" %>
       </div>
+    </div >
+  </section>
+
+  <section class= "container border p-3 mb-4 " >
+        <h2 class= "text-center font-weight-bold" >Gestion des affaires</h2>
       </br>
-    </section>
+        <div class= "text-center  " >
+          <%= link_to "add affaire", new_affaire_path, class:"btn btn-outline-secondary"  %>
+        </br></br>
+          <%= button_to "Toutes les AFFAIRES", affaires_path, method: :get ,class:"btn btn-outline-secondary" %>
+        </div>
+      </br>
+  </section>
  
 
-
-    </section>
-      <section class= "container border p-3 mb-4 " >
-  
+  <section class= "container border p-3 mb-4 " >
       <h2 class= "text-center font-weight-bold" >Gestion des dépannages</h2>
       </br>
       <div class= "text-center  " >
-        <%#= link_to "add affaire", new_affaire_path,"data-controller": "turbo" , class:"btn btn-outline-secondary"  %>
-         <%= link_to "add affaire", new_depannage_path, class:"btn btn-outline-secondary"  %>
+         <%= link_to "add dépannage", new_depannage_path, class:"btn btn-outline-secondary"  %>
         </br></br>
-        <%= button_to "Toutes les AFFAIRES", depannages_path, method: :get ,class:"btn btn-outline-secondary" %>
+        <%= button_to "Toutes les Dépannages", depannages_path, method: :get ,class:"btn btn-outline-secondary" %>
       </div>
       </br>
-    </section>
+  </section>
 
+<% else %>
 
+  <section class= "container border p-3 mb-4 " >
 
-       <% else %>
-     <section class= "container border p-3 mb-4 " >
-   
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
       <ol class="carousel-indicators">
         <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>

@@ -7,10 +7,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-User.destroy_all
-Weektime.destroy_all
-Affaire.destroy_all
-
+User.delete_all
+Profile.delete_all
+Weektime.delete_all
+Affaire.delete_all
+Worktime.delete_all
+Depannage.delete_all
+Adresse.delete_all
 
 ###################################################
 # USER CONFIGURED
@@ -49,20 +52,20 @@ weektimes << w
 ###################################################
 # Affaires CONFIGURED
 ###################################################
-#affaires= []
-#50.times do
-# af= Affaire.new(
-#    number: Faker::Invoice.reference,
-#    client: Faker::Name.name,
-#    title: Faker::Construction.heavy_equipment
-#
-#  )
-#  af.save
-#  affaires << af
-#  
-#end
-#p "Created #{Affaire.count} Affaire"
-#
+affaires= []
+50.times do
+ af= Affaire.new(
+    number: Faker::Invoice.reference,
+    client: Faker::Name.name,
+    title: Faker::Construction.heavy_equipment
+
+  )
+  af.save
+  affaires << af
+  
+end
+p "Created #{Affaire.count} Affaire"
+
 #
 ###################################################
 # Depannages CONFIGURED

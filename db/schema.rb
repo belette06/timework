@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_094101) do
     t.string "street2"
     t.string "zip"
     t.string "city"
-    t.string "contry"
+    t.integer "contry", default: 0
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -118,7 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_094101) do
     t.bigint "user_id", null: false
     t.date "dateweek"
     t.integer "numsemaine"
-    t.float "workweek", default: 0.0
+    t.integer "workweek", default: 0
     t.boolean "accord", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

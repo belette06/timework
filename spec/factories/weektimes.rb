@@ -8,7 +8,7 @@
 #  accord       :boolean          default(FALSE)
 #  dateweek     :date
 #  numsemaine   :integer
-#  workweek     :float            default(0.0)
+#  workweek     :integer          default(0)
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :bigint           not null

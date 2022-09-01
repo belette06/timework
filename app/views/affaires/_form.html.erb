@@ -35,10 +35,10 @@
           <%= adr.input :zip, placeholder:"Code postal" %>
         </div>
         <div class="col-sm-3">
-          <%= adr.input :contry, placeholder:"Pays" %>
+          <%= adr.input :contry, collection: Adresse::contries.keys , placeholder:"Pays", prompt: :translate %>
         </div>
         </div>  
-         <div class="col-sm-11 container"
+         <div class="col-sm-11 container">
         <%= adr.input :body, as: :text %>
         </div>
       <%end%>  

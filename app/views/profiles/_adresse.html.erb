@@ -1,6 +1,6 @@
 <div class=" border col-sm-5 p-4">
  <H3> ADRESSE </h3>
-     <%= simple_fields_for @adresse do |adr| %>
+     <%= simple_fields_for :adresse do |adr| %>
         <div class="row">
             <div class="col-sm-3 p-1">
                 <%= adr.input :number, placeholder: "N°", label: false %>
@@ -17,10 +17,10 @@
                 <%= adr.input :city, placeholder:"Ville", label: false %>
             </div>
             <div class="col-sm-3">
-                <%= adr.input :zip, placeholder:"Code postal" , label: false%>
+                <%= adr.input :zip, placeholder:"Code postal" , label: false %>
             </div>
             <div class="col-sm-3">
-                <%= adr.input :contry, placeholder:"Pays", label: false %>
+                <%= adr.input :contry, collection: Adresse::contries.keys, placeholder:"Pays", prompt: :translate, label: false %>
             </div>
         </div>  
         <div class="col-sm-11 container p-1">

@@ -26,7 +26,7 @@
 #  fk_rails_...  (worktime_id => worktimes.id)
 #
 class Affaire < ApplicationRecord
-  belongs_to :adresse
+  belongs_to :adresse,optional: true
   
   has_many :worktimes
   accepts_nested_attributes_for :worktimes

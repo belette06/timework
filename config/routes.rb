@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'admin/show_weektime/:id', to: "admin#show_weektime", as: 'admin_weektime'
     get 'admin/affaires'
     get 'admin/show_affaire/:id', to: "admin#show_affaire", as: 'admin_affaire'
+    get 'admin/depannages'
+    get 'admin/show_depannage/:id', to: "admin#show_depannage", as: 'admin_depannage'
   end
 
 

@@ -14,7 +14,7 @@
     <thead class="thead-light">
        <%= content_tag :tr , scope: "row" do %>
         <th colspan="1" class="text-center"><strong>JOUR</strong></th>
-        <th colspan="1" class="text-center"><strong>AFFAIRES</strong></th>
+        <th colspan="1" class="text-center"><strong>Title</strong></th>
         <th colspan="1" class="text-center"><strong>DEBUT</strong></th>
         <th colspan="1" class="text-center"><strong>FIN</strong></th>
         <th colspan="1" class="text-center"><strong>H/TOTAL </strong></th>
@@ -33,7 +33,7 @@
        <%if @weektime.workweek.nil? %> 
         <th colspan="1"></th>
        <% else %>
-        <th class="text-center" colspan="1"><%= @weektime.workweek %> H </th>
+        <th class="text-center" colspan="1"><%=@weektime.to_do_time(@weektime.workweek) %> H </th>
        <% end %>
         <th colspan="2"></th>  
      <% end %>

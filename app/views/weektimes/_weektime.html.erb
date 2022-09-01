@@ -14,8 +14,10 @@
                                                   action: "checkerbox-weektimes#toggle change->checkerbox-weektimes#toggleChildren" 
                                                   }} %>     
        </td> 
-      <td class="text-center">  <%= link_to "Voir", weektime, class:"btn btn-outline-info btn-sm"%>  
-     <%= link_to "X", weektime_path(weektime.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-sm" %> </td>
+       <td class="text-center">  
+          <%= link_to "Voir", weektime, class:"btn btn-outline-info btn-sm"%>  
+          <%= link_to "X", weektime_path(weektime.id), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } , class: "btn btn-outline-danger btn-sm" %> 
+       </td>
      <% end %> 
 
    <% end %>    

@@ -6,7 +6,7 @@ class CreateWeektimes < ActiveRecord::Migration[7.0]
       t.belongs_to :user, null: false, foreign_key: true, index: true
       t.date :dateweek
       t.integer :numsemaine
-      t.float :workweek, default: 0
+      t.integer :workweek, default: 0
       t.boolean :accord, default: false
 
       t.timestamps

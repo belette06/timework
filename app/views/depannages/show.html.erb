@@ -24,11 +24,11 @@
          
             <tr>
             
-                <td class="text-center"><%= work.daytime %> </td>
-                <td class="text-center"> <%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
-                <td class="text-center"> <%= work.accord %></td>
-                <td class="text-center"> <%= work.weektime_id %></td>
-                <td class="text-center"> <%= link_to "Show", weektime_path(work.weektime_id) , class:"btn btn-outline-info btn-sm" %></td>
+                <td class="text-center"><%= depan.daytime %> </td>
+                <td class="text-center"> <%= Time.at(depan.workday).utc.strftime("%HH %Mmin") %></td>
+                <td class="text-center"> <%= depan.accord %></td>
+                <td class="text-center"> <%= depan.weektime_id %></td>
+                <td class="text-center"> <%= link_to "Show", weektime_path(depan.weektime_id) , class:"btn btn-outline-info btn-sm" %></td>
               
             </tr>
     <% end %>

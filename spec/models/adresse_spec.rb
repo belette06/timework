@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  body       :text
 #  city       :string
-#  contry     :string
+#  contry     :integer          default("France")
 #  number     :string
 #  street     :string
 #  street2    :string

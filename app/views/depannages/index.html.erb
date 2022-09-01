@@ -1,6 +1,12 @@
-<h1 class="text-center">Dépannage </h1>
+<h1 class="text-center">Dépannages </h1>
 <hr>
 
+<div class="d-flex justify-content-end container text-center">
+  <%= link_to "New affaire", new_depannage_path , class:"btn btn-outline-secondary btn-sm"%>
+</div>
+
+<hr>
+</br>
 
 <div class="container">
        <table class="table table-sm">
@@ -26,10 +32,10 @@
       <tbody>   
       <% @depannages.each do |depannage| %>
          
-            <tr>
+            <tr scope="row">
                 <td class="text-center"> <%= depannage.number %></td>
                 <td class="text-center"> <%= depannage.client %></td>
-                <td class="text-center"> <%= depannage.adresse.full_adresse %></td>
+                <td class="text-center"> <%= depannage.adresse.full_adresse.truncate(8)%></td>
                 <td class="text-center"> <%= depannage.title %></td>
                 <td class="text-center"> <%= !depannage.worktime_ids.empty? %></td>
                 <td class="text-center"> <%= Time.at(depannage.workdepannage).utc.strftime("%HH %Mmin")%></td>
@@ -59,7 +65,3 @@
 
   </div>
 
-
-<div class="form-actions text-center">
-  <%= link_to "New affaire", new_depannage_path , class:"btn btn-outline-secondary btn-sm"%>
-</div>

@@ -42,6 +42,7 @@ class ProfilesController < ApplicationController
   end  
 
   def update
+    @profile.update(profile_params)
         if @profile.adresse.nil?
            @adresse = @profile.build_adresse(adresse_params)
            @adresse.save
@@ -72,7 +73,7 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:firstname, :lastname, :phone, :phone_supl, :job, :avatar ,adresse_id: [:number, :street, :street2 , :zip, :city, :contry, :body]  )
+    params.require(:profile).permit(:firstname, :lastname, :phone, :phone_supl, :job, :avatar ,:adresse  )
   end
 
   def adresse_params

@@ -5,7 +5,7 @@
 #  id         :bigint           not null, primary key
 #  body       :text
 #  city       :string
-#  contry     :string
+#  contry     :integer          default("France")
 #  number     :string
 #  street     :string
 #  street2    :string
@@ -15,11 +15,14 @@
 #
 class Adresse < ApplicationRecord
 
-
+  enum contry: %i[France Monaco Italie]
+ 
 
   def full_adresse
     "#{number} #{street} #{street2} #{zip} #{city} #{contry}"
   end
+
+
 
   private
 

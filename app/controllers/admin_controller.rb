@@ -31,4 +31,13 @@ class AdminController < ApplicationController
   def show_affaire
     @affaire = Affaire.includes(:worktimes).find(params[:id])
   end
+
+  def depannages
+    @depannages = Depannage.all
+    @worktimes = Depannage.all.includes(:worktimes)
+  end
+
+  def show_affaire
+    @depannage = Depannage.includes(:worktimes).find(params[:id])
+  end
 end

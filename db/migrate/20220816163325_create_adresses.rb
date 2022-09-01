@@ -6,7 +6,7 @@ class CreateAdresses < ActiveRecord::Migration[7.0]
       t.string :street2
       t.string :zip
       t.string :city
-      t.string :contry
+      t.integer :contry, default: 0
       t.text :body
 
       t.timestamps
