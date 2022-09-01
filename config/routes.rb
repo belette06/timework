@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'depannages/new'
+  get 'depannages/edit'
+  get 'depannages/show'
+  get 'depannages/index'
 
   authenticated :user, ->(user) {user.admin?} do
     get 'admin', to: 'admin#index'

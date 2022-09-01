@@ -31,8 +31,6 @@ class Affaire < ApplicationRecord
   has_many :worktimes
   accepts_nested_attributes_for :worktimes
 
-  attr_accessor :flash_alert_message
-
   before_validation :update_workaffaire
 
   paginates_per 10

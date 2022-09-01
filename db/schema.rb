@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_175732) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_005521) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_175732) do
     t.index ["adresse_id"], name: "index_affaires_on_adresse_id"
     t.index ["id"], name: "index_affaires_on_id", unique: true
     t.index ["worktime_id"], name: "index_affaires_on_worktime_id"
+  end
+
+  create_table "depannages", force: :cascade do |t|
+    t.string "client"
+    t.string "title"
+    t.string "number"
+    t.string "body"
+    t.boolean "closed"
+    t.bigint "worktimes_id", null: false
+    t.bigint "adresse_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adresse_id"], name: "index_depannages_on_adresse_id"
+    t.index ["worktimes_id"], name: "index_depannages_on_worktimes_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -132,6 +146,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_175732) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "affaires", "adresses", column: "adresse_id"
   add_foreign_key "affaires", "worktimes"
+  add_foreign_key "depannages", "adresses", column: "adresse_id"
+  add_foreign_key "depannages", "worktimes", column: "worktimes_id"
   add_foreign_key "profiles", "adresses", column: "adresse_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "users", "profiles"

@@ -1,0 +1,2 @@
+module DepannagesHelper
+end
