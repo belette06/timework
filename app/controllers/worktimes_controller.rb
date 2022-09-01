@@ -98,12 +98,12 @@ class WorktimesController < WeektimesController
   end
 
   def worktime_update_params
-    params.require(:worktime).permit(:weektime_id, :gotime, :endtime,:workday, :accord, :affaire_id, :daytime)
+    params.require(:worktime).permit(:weektime_id, :gotime, :endtime,:workday, :accord, :depannage_id, :affaire_id, :daytime)
   end
   
 
   # Only allow a list of trusted parameters through.
   def worktime_params
-    params.require(:worktime).permit(:weektime_id, :gotime, :endtime,:workday, :accord, :affaire_id, dayrecords:[] )
+    params.require(:worktime).permit(:weektime_id, :gotime, :endtime,:workday, :accord, :depannage_id, :affaire_id, dayrecords:[] )
   end
 end

@@ -52,8 +52,8 @@ class Worktime < ApplicationRecord
   validates :gotime, presence: true
   validates :endtime, presence: true
   validate :present_affaire_or_depannage?
-  validates_presence_of :affaire, unless: Proc.new { |q| q.affaire_id.present? }
-  validates_presence_of :depannage, unless: Proc.new { |q| q.depannage_id.present? }
+  validates_presence_of :affaire, unless: Proc.new { |q| q.depannage_id.present? }
+  validates_presence_of :depannage, unless: Proc.new { |q| q.affaire_id.present? }
 
 
 

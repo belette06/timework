@@ -18,11 +18,11 @@
   </div>
 
   <div>
+  <div class="form-inputs text-center">
     <h5> Selection laffaire </h5>
- <%= f.association :affaire, collection: Affaire.all, :value_method => :id %> 
-  </div>
+      <%= f.association :affaire, collection: Affaire.all, :value_method => :id %> 
     <h5> Selection dépannage </h5>
- <%= f.association :depannage, collection: Depannage.all, :value_method => :id %> 
+      <%= f.association :depannage, collection: Depannage.all, :value_method => :id %> 
   </div>
 </br></br>
   <div class="form-actions text-center">

@@ -18,7 +18,7 @@ class DepannagesController < ApplicationController
   end
 
   def create
-    @depannage = Depannage.create(params[depannage_params])
+    @depannage = Depannage.create(depannage_params)
     @depannage.adresse_id = @depannage.build_adresse(adresse_params)
 
     respond_to do |format|
@@ -43,7 +43,7 @@ class DepannagesController < ApplicationController
   end
 
   def update
-    @depannage.update
+    @depannage.update(depannage_params)
     if @depannage.adresse.nil?
       @adresse = @depannage.build_adresse(adresse_params)
       @adresse.save
