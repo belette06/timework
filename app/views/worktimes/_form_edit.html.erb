@@ -21,7 +21,9 @@
     <h5> Selection laffaire </h5>
  <%= f.association :affaire, collection: Affaire.all, :value_method => :id %> 
   </div>
-
+    <h5> Selection dépannage </h5>
+ <%= f.association :depannage, collection: Depannage.all, :value_method => :id %> 
+  </div>
 </br></br>
   <div class="form-actions text-center">
     <%= f.button :submit , class:"btn btn-outline-secondary btn-sm"  %>

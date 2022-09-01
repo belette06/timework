@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_005521) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_094101) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -73,13 +73,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_005521) do
     t.string "title"
     t.string "number"
     t.string "body"
-    t.boolean "closed"
-    t.bigint "worktimes_id", null: false
-    t.bigint "adresse_id", null: false
+    t.integer "workdepannage", default: 0
+    t.boolean "closed", default: false
+    t.bigint "worktime_id"
+    t.bigint "adresse_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["adresse_id"], name: "index_depannages_on_adresse_id"
-    t.index ["worktimes_id"], name: "index_depannages_on_worktimes_id"
+    t.index ["worktime_id"], name: "index_depannages_on_worktime_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -137,7 +138,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_005521) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "affaire_id"
+    t.bigint "depannage_id"
     t.index ["affaire_id"], name: "index_worktimes_on_affaire_id"
+    t.index ["depannage_id"], name: "index_worktimes_on_depannage_id"
     t.index ["id"], name: "index_worktimes_on_id", unique: true
     t.index ["weektime_id"], name: "index_worktimes_on_weektime_id"
   end
@@ -147,7 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_005521) do
   add_foreign_key "affaires", "adresses", column: "adresse_id"
   add_foreign_key "affaires", "worktimes"
   add_foreign_key "depannages", "adresses", column: "adresse_id"
-  add_foreign_key "depannages", "worktimes", column: "worktimes_id"
+  add_foreign_key "depannages", "worktimes"
   add_foreign_key "profiles", "adresses", column: "adresse_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "users", "profiles"
@@ -155,5 +158,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_005521) do
   add_foreign_key "weektimes", "users"
   add_foreign_key "weektimes", "worktimes", column: "worktimes_id"
   add_foreign_key "worktimes", "affaires"
+  add_foreign_key "worktimes", "depannages"
   add_foreign_key "worktimes", "weektimes"
 end

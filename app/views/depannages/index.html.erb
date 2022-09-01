@@ -1,2 +1,65 @@
-<h1>Depannages#index</h1>
-<p>Find me in app/views/depannages/index.html.erb</p>
+<h1 class="text-center">Dépannage </h1>
+<hr>
+
+
+<div class="container">
+       <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th class="text-center"><strong>Numero</strong></th>
+            <th class="text-center"><strong>client</strong></th>
+            <th class="text-center"><strong>address</strong></th>
+            <th class="text-center"><strong>Title</strong></th>
+            <th class="text-center"><strong>Saisie/H</strong></th>
+            <th class="text-center"><strong> total/ heure</strong></th>
+          </tr>
+        </thead>
+    <%if @depannages.nil? %> 
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+            </tr>
+    <% else %>   
+      <tbody>   
+      <% @depannages.each do |depannage| %>
+         
+            <tr>
+                <td class="text-center"> <%= depannage.number %></td>
+                <td class="text-center"> <%= depannage.client %></td>
+                <td class="text-center"> <%= depannage.adresse.full_adresse %></td>
+                <td class="text-center"> <%= depannage.title %></td>
+                <td class="text-center"> <%= !depannage.worktime_ids.empty? %></td>
+                <td class="text-center"> <%= Time.at(depannage.workdepannage).utc.strftime("%HH %Mmin")%></td>
+                <td class="text-center"> <%= link_to "Show", depannage , class:"btn btn-outline-info btn-sm" %></td>
+              
+            
+              
+            </tr>
+    <% end %>
+      </tbody>
+    <%end%>  
+        <thead class="thead-light">
+          <tr>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+
+    <div class="container text-center">
+    <%#= paginate @depannages %>
+  </div>
+
+  </div>
+
+
+<div class="form-actions text-center">
+  <%= link_to "New affaire", new_depannage_path , class:"btn btn-outline-secondary btn-sm"%>
+</div>

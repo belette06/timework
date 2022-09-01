@@ -11,7 +11,7 @@
 #  workaffaire :integer          default(0)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  adresse_id  :bigint           not null
+#  adresse_id  :bigint
 #  worktime_id :bigint
 #
 # Indexes

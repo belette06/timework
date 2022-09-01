@@ -24,6 +24,10 @@
         </br>
     </div>
 </div >
+
+
+
+
 </section>
       <section class= "container border p-3 mb-4 " >
   
@@ -37,7 +41,26 @@
       </div>
       </br>
     </section>
-    <% else %>
+ 
+
+
+    </section>
+      <section class= "container border p-3 mb-4 " >
+  
+      <h2 class= "text-center font-weight-bold" >Gestion des dépannages</h2>
+      </br>
+      <div class= "text-center  " >
+        <%#= link_to "add affaire", new_affaire_path,"data-controller": "turbo" , class:"btn btn-outline-secondary"  %>
+         <%= link_to "add affaire", new_depannage_path, class:"btn btn-outline-secondary"  %>
+        </br></br>
+        <%= button_to "Toutes les AFFAIRES", depannages_path, method: :get ,class:"btn btn-outline-secondary" %>
+      </div>
+      </br>
+    </section>
+
+
+
+       <% else %>
      <section class= "container border p-3 mb-4 " >
    
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">

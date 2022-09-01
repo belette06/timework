@@ -1,2 +1,64 @@
-<h1>Depannages#show</h1>
-<p>Find me in app/views/depannages/show.html.erb</p>
+
+<%= render @depannage %>
+<hr>
+
+<div class="container">
+       <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th class="text-center"><strong>jour</strong></th>
+            <th class="text-center"><strong>heure Total</strong></th>
+            <th class="text-center"><strong>Accord</strong></th>
+            <th class="text-center"><strong>feuille.id</strong></th>
+            <th class="text-center"></th>
+          </tr>
+        </thead>
+        <tbody>  
+    <%if @depannage.worktime_ids.empty? %> 
+            <tr>
+              <td colspan="4", class="text-center "><strong>Aucune Heure ajouté</strong></td>
+            </tr>
+    <% else %>  
+       
+      <% @depannage.worktimes.each do |depan| %>
+         
+            <tr>
+            
+                <td class="text-center"><%= work.daytime %> </td>
+                <td class="text-center"> <%= Time.at(work.workday).utc.strftime("%HH %Mmin") %></td>
+                <td class="text-center"> <%= work.accord %></td>
+                <td class="text-center"> <%= work.weektime_id %></td>
+                <td class="text-center"> <%= link_to "Show", weektime_path(work.weektime_id) , class:"btn btn-outline-info btn-sm" %></td>
+              
+            </tr>
+    <% end %>
+      </tbody>
+    <%end%>  
+        <thead class="thead-light">
+          <tr>
+            <th> </th>
+            <th class="text-center"><%= Time.at(@depannage.workdepannage).utc.strftime("%HH %Mmin")  %> H </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+          </tr>
+        </thead>
+      </table>
+  </div>
+
+    <div class="container text-center">
+    <%#= paginate @afpg %>
+  </div>
+
+
+
+
+
+<hr>
+<div>
+  <%= link_to "Edit this depannage", edit_depannage_path(@depannage) , class:"btn btn-outline-info btn-sm"%> 
+  <%= button_to "Destroy this depannage", @depannage, method: :delete , class:"btn btn-outline-danger btn-sm"%>
+  </br>
+  <%= link_to "Back to depannages", depannages_path, class:"btn btn-outline-secondary btn-sm" %>
+</div>

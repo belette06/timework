@@ -1,2 +1,9 @@
-<h1>Depannages#new</h1>
-<p>Find me in app/views/depannages/new.html.erb</p>
+<h1 class="text-center">New dépannage</h1>
+
+<%= render "form", depannage: @depannage %>
+
+<br>
+
+<div>
+  <%= link_to "Back to depannage", depannages_path %>
+</div>

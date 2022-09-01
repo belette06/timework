@@ -5,9 +5,10 @@ class CreateDepannages < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :number
       t.string :body
-      t.boolean :closed
-      t.references :worktimes, null: false, foreign_key: true
-      t.belongs_to :adresse, null: false, foreign_key: true
+      t.integer :workdepannage, default: 0
+      t.boolean :closed, default: false
+      t.references :worktime, foreign_key: true
+      t.belongs_to :adresse, foreign_key: true
 
       t.timestamps
     end

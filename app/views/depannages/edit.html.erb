@@ -1,2 +1,10 @@
-<h1>Depannages#edit</h1>
-<p>Find me in app/views/depannages/edit.html.erb</p>
+<h1>Editing dépannage</h1>
+
+<%= render "form", depannage: @depannage %>
+
+<br>
+
+<div>
+  <%= link_to "Show this depannage", @depannage %> |
+  <%= link_to "Back to depannages", depannages_path %>
+</div>

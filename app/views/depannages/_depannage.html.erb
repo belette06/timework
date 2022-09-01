@@ -1,0 +1,36 @@
+<div id="<%= dom_id depannage %>">
+  <p>
+    <strong>Number:</strong>
+    <%= depannage.number %>
+  </p>
+
+  <p>
+    <strong>Client:</strong>
+    <%= depannage.client %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= depannage.adresse.full_adresse %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= depannage.title %>
+  </p>
+  <p>
+    <strong>body:</strong>
+    <%= depannage.body %>
+  </p>
+
+    <p>
+    <strong>heur saisie: </strong>
+     <%=!depannage.worktime_ids.empty? %> 
+  </p>
+
+      <p>
+    <strong>heur: </strong>
+     <%=!depannage.workdepannage %> 
+  </p>
+
+</div>

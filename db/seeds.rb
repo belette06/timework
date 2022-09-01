@@ -44,6 +44,65 @@ weektimes << w
  end
  p "Created #{Weektime.count} Weektime"
 
+
+
+###################################################
+# Affaires CONFIGURED
+###################################################
+#affaires= []
+#50.times do
+# af= Affaire.new(
+#    number: Faker::Invoice.reference,
+#    client: Faker::Name.name,
+#    title: Faker::Construction.heavy_equipment
+#
+#  )
+#  af.save
+#  affaires << af
+#  
+#end
+#p "Created #{Affaire.count} Affaire"
+#
+#
+###################################################
+# Depannages CONFIGURED
+###################################################
+#depannages= []
+#50.times do
+# depa= Depannage.new(
+#    number: Faker::Invoice.reference,
+#    client: Faker::Name.name,
+#    title: Faker::Construction.heavy_equipment
+#
+#  )
+#  depa.save
+#  depannages << depa
+#  
+#end
+#p "Created #{Depannage.count} Depannage"
+#
+#
+
+
+
+###################################################
+# Worktimes CONFIGURED
+###################################################
+#worktimes= []
+#
+#30.times do
+# work = Weektime.new(
+#  gotime: Time.now,
+#  endtime: Time.now + 29800,
+#  workday:Faker::Number.within(range: 1...6),
+#  affaire_id: affaires.without(range:1..15),
+#  depannage_id: depannages.without(range:1..15)
+#  )
+#  work.save
+#  worktimes << work
+# end
+# p "Created #{Weektime.count} Weektime"
+#
 ###################################################
 # Adresse CONFIGURED
 ###################################################
@@ -67,20 +126,6 @@ weektimes << w
 #p "Created #{Adresse.count} Adresse"
 #
 #
-###################################################
-# Affaires CONFIGURED
-###################################################
-
-50.times do
-  Affaire.new(
-    number: Faker::Invoice.reference,
-    client: Faker::Name.name,
-    title: Faker::Construction.heavy_equipment,
-    adresse_id: adresse.find_by(1..10)
-
-  ).save
-  p "Created #{Affaire.count} Affaire"
-end
 
 ###################################################
 
